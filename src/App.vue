@@ -1,7 +1,17 @@
 <template>
-  <div id="app">
-    <div class="container d-flex justify-content-center align-items-center">
-      <router-view />
-    </div>
-  </div>
+    <router-view/>
 </template>
+
+
+<script>
+export default {
+  name: "App",
+  components: {},
+  data() {
+    return {};
+  },
+  methods: {},
+};
+</script>
+<style>
+</style>
