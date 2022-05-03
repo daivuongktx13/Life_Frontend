@@ -11,9 +11,9 @@ export default {
     return {};
   },
   mounted(){
-    var video = document.getElementById('my_video');
-    video.muted=true; // Must be muted so that video can play
-    video.play();
+      var video = document.getElementById('my_video');
+      video.muted=true; // Must be muted so that video can play
+      video.play();
   }
 };
 </script>

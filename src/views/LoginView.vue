@@ -85,7 +85,7 @@ export default {
             this.showSuccess = false;
           }, 1000);
           setTimeout(() => {
-            this.$router.push('/temp');
+            this.$router.push('/welcome');
           }, 1500);
         })
         .catch((error) => {
