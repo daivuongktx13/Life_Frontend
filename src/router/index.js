@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NotFoundVue from '../components/NotFound.vue'
 import LoginView from '../views/LoginView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import ResetView from '../views/ResetView.vue'
@@ -7,6 +8,11 @@ import ResetView from '../views/ResetView.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '*',
+    name: 'NotFound',
+    component: NotFoundVue
+  },
   {
     path: '/',
     name: 'home',
