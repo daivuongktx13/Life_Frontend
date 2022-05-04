@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     getters: {
         getMode: (state) => state.currentMode,
         getAnimations: (state) => state.animations,
+        getIndexMode: (state) => state.animations.indexOf(state.currentMode),
     },
 
     actions: {
@@ -21,6 +22,16 @@ const store = new Vuex.Store({
     mutations: {
         setMode(state, mode) {
             state.currentMode = mode;
+        },
+        nextMode(state){
+            var index = state.animations.indexOf(state.currentMode);
+            var value = state.animations[index + 1];
+            this.commit("setMode", value);
+        },
+        previousMode(state){
+            var index = state.animations.indexOf(state.currentMode);
+            var value = state.animations[index - 1];
+            this.commit("setMode", value);
         }
     }
 })
