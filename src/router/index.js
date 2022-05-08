@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NotFoundVue from '../components/NotFound.vue'
 import LoginView from '../views/LoginView.vue'
+import MainPageVue from '../views/MainPage.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import ResetView from '../views/ResetView.vue'
 
@@ -16,7 +17,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: LoginView
+    component: MainPageVue
   },
   {
     path: '/registration',
