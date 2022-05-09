@@ -12,7 +12,7 @@
 <script>
 import Profile from "./Profile.vue";
 export default {
-  name: "Profile Space",
+  name: "ProfileSpace",
   components: {Profile},
   
 };

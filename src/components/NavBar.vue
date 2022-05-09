@@ -1,12 +1,12 @@
 <template>
-    <div class="flex flex-row py-3 items-center border ">
+    <div class="flex flex-row py-3 items-center border sticky top-0 z-10 bg-white/80 shadow-md">
     <div class="basis-1/2 pl-5 text-xl font-semibold"><a href="">Life</a></div>
     <div class="basis-1/2 flex flex-row justify-end space-x-8 text-xl items-center pr-10
     font-medium"> 
-      <div class="hover:text-sky-500"><a href="">Home</a></div>
-      <div class="hover:text-sky-500"><a href="">Category</a></div>
-      <div class="hover:text-sky-500"><a href="">Explore</a></div>
-      <div class="hover:text-sky-500"><a href="">About</a></div>
+      <div class="hover:text-sky-500 transition" v-bind:class="{active: nav['home']}"><a href="#home">Home</a></div>
+      <div class="hover:text-sky-500 transition" v-bind:class="{active: nav['category']}"><a href="#category">Category</a></div>
+      <div class="hover:text-sky-500 transition"><a href="">Explore</a></div>
+      <div class="hover:text-sky-500 transition"><a href="">About</a></div>
       <button class="from-violet-500 to-cyan-600 bg-gradient-to-r 
       text-xs rounded-full py-1 px-2 font-normal text-white hover:scale-125 transition-all">
       <span>
@@ -22,5 +22,41 @@
 <script>
 export default {
     name: "NavBar",
+    data() {
+      return {
+        nav: {
+          "home": false,
+          "category": false,
+        },
+      }
+    },
+    mounted() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Add 'active' class if observation target is inside viewport
+        if (entry.intersectionRatio > 0) {
+          this.nav[`${entry.target.id}`] = true;
+        }
+        // Remove 'active' class otherwise
+        else {
+          this.nav[`${entry.target.id}`] = false;
+        }
+      })
+    });
+    const home = document.querySelector("#home");
+    const category = document.querySelector("#category");
+    
+    observer.observe(home);
+    observer.observe(category);
+
+  },
 }
 </script>
+
+
+<style scoped>
+.active{
+  color: rgb(14, 50, 233);
+  border-bottom: 1px solid blue;
+}
+</style>
