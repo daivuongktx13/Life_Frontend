@@ -10,7 +10,7 @@
       >
         {{ animation }}
       </li>
-      <li class="start">Start</li>
+      <li class="start" href="/">Start</li>
     </ul>
     <ul class="paginationControl">
       <li id="previous" v-if="getIndexMode != 0" @click="previousMode">

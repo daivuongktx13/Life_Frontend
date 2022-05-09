@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import ControlView from "../components/ControlView.vue";
-import slide from "../components/page/SlideView.vue"
-import fade from "../components/page/FadeView.vue";
-import slideUp from "../components/page/SlideUp.vue";
-import zoom from "../components/page/ZoomView.vue"
-import flipX from "../components/page/FlipX.vue"
-import flipY from "../components/page/FlipY.vue"
+import ControlView from "../components/Welcome_Page/ControlView.vue";
+import slide from "../components/Welcome_Page/SlideView.vue"
+import fade from "../components/Welcome_Page/FadeView.vue";
+import slideUp from "../components/Welcome_Page/SlideUp.vue";
+import zoom from "../components/Welcome_Page/ZoomView.vue"
+import flipX from "../components/Welcome_Page/FlipX.vue"
+import flipY from "../components/Welcome_Page/FlipY.vue"
 
 import { mapGetters } from "vuex";
 export default {

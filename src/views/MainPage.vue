@@ -8,9 +8,9 @@
 
 
 <script>
-import NavBar from "../components/NavBar.vue";
-import HomeContent from "../components/HomeContent.vue";
-import CategoryContent from "../components/CategoryContent.vue";
+import NavBar from "../components/Main_Page/NavBar.vue";
+import HomeContent from "../components/Main_Page/HomeContent.vue";
+import CategoryContent from "../components/Main_Page/CategoryContent.vue";
 export default {
   name: "MainPage",
   components: { NavBar, HomeContent, CategoryContent },

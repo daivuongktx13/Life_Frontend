@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import VideoContainer from "@/components/VideoContainer.vue";
+import VideoContainer from "../components/Login_Page/VideoContainer.vue";
 import axios from "axios";
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'

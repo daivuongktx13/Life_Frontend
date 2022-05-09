@@ -1,6 +1,6 @@
 <template>
     <video id="my_video"  autoplay loop style="max-height: 100%; max-width: 100%" >
-                <source src="../assets/bg_vd.mp4" type="video/mp4">
+                <source src="../../assets/bg_vd.mp4" type="video/mp4">
             </video>
 </template>
 

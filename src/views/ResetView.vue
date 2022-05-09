@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import VideoContainer from "@/components/VideoContainer.vue";
+import VideoContainer from "../components/Login_Page/VideoContainer.vue";
 export default {
   name: "ResetView",
   components: {
