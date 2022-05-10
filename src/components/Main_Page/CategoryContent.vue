@@ -1,30 +1,32 @@
 <template>
-  <div id="category">
-    <div class="flex justify-center pt-5 pb-3 text-xl font-bold">
-      <em>Choose a category to start:</em>
+  <div id="categorycontent" class="mt-10">
+    <div class="flex justify-center" v-if="getMode == 1">
+      <embed :src="require(`../../assets/rolling.svg`)" />
     </div>
-    <div class="flex flex-wrap justify-center space-x-2 w-1/3 mx-auto">
-      <CategoryNode name="Nature"/>
-      <CategoryNode name="Pets"/>
-      <CategoryNode name="Snow"/>
-      <CategoryNode name="Space"/>
-      <CategoryNode name="Game"/>
-      <CategoryNode name="Code"/>
-      <CategoryNode name="City"/>
-      <CategoryNode name="Cafe"/>
-      <CategoryNode name="Beach"/>
-      <CategoryNode name="Anime"/>
+
+    <div class="grid grid-cols-3 gap-4 px-52 pt-10" v-if="getMode == 2">
+      <SpaceProfile name="1" src="1" />
+      <SpaceProfile name="2" src="2" />
+      <SpaceProfile name="3" src="3" />
+      <SpaceProfile name="4" src="4" />
+      <SpaceProfile name="5" src="5" />
+      <SpaceProfile name="6" src="6" />
     </div>
   </div>
 </template>
 
+
 <script>
-import CategoryNode from "./CategoryNode.vue";
+import search from '../../store/search'
+import SpaceProfile from "./SpaceProfile.vue";
 export default {
   name: "CategoryContent",
-  components: { CategoryNode },
-  methods: {
-    
-  },
+  components: { SpaceProfile },
+  computed: {
+    getMode(){
+        return search.getters.getMode;
+    }
+  }
 };
 </script>
+

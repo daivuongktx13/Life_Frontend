@@ -1,5 +1,5 @@
 <template>
-    <button class="px-3 border-2 py-1 my-2 border-gray-400 rounded-full font-medium 
+    <button @click="setMode" class="px-3 border-2 py-1 my-2 border-gray-400 rounded-full font-medium 
     shadow-sm hover:scale-110 hover:text-sky-500">
           <span><img class="inline-block" width="20px" height="20px" 
             :src="require(`../../assets/ico/${name}.png`)"
@@ -10,10 +10,21 @@
 </template>
 
 <script>
+import search from '../../store/search'
 export default {
     name:"CategoryNode",
     props:{
         name: String, 
     },
+    methods:{
+        setMode(){
+            search.commit("setMode", 1);
+            const temp = document.getElementById("categorycontent");
+            temp.scrollIntoView();
+            setTimeout(() => {
+                search.commit("setMode", 2);
+            },3000);
+        }
+    }
 }
 </script>
