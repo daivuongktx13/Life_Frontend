@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NotFoundVue from '../components/NotFound.vue'
+import ChatVue from '../views/Chat.vue'
 import LoginView from '../views/LoginView.vue'
 import MainPageVue from '../views/MainPage.vue'
 import RegistrationView from '../views/RegistrationView.vue'
@@ -17,7 +18,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: MainPageVue
+    component: ChatVue
   },
   {
     path: '/registration',

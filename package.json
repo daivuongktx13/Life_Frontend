@@ -15,17 +15,17 @@
     "@vue/eslint-config-airbnb": "^5.3.0",
     "autoprefixer": "^10",
     "axios": "^0.21.1",
-    "bootstrap": "^5.0.1",
-    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.14.0",
     "gsap": "^3.10.4",
     "mini-css-extract-plugin": "^1.6.0",
     "node-sass": "^7.0.1",
     "postcss": "^8",
+    "sockjs-client": "^1.6.0",
     "tailwindcss": "^3",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "webstomp-client": "^1.2.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.3",

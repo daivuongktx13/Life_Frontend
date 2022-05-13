@@ -14,10 +14,10 @@
     </ul>
     <ul class="paginationControl">
       <li id="previous" v-if="getIndexMode != 0" @click="previousMode">
-        <b-icon icon="arrow-left-circle-fill" font-scale="4"></b-icon>
+        &lt;
       </li>
       <li id="next" v-if="getIndexMode != 5" @click="nextMode">
-        <b-icon icon="arrow-right-circle-fill" font-scale="4"></b-icon>
+        &gt;
       </li>
     </ul>
   </div>
