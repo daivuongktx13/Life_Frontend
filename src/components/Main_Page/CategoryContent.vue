@@ -4,7 +4,7 @@
       <embed :src="require(`../../assets/rolling.svg`)" />
     </div>
 
-    <div class="grid grid-cols-3 gap-4 px-52 pt-10" v-if="getMode == 2">
+    <div class="grid md:grid-cols-3 grid-cols-1 gap-4 px-10 md:px-10 lg:px-30 pt-10" v-if="getMode == 2">
       <SpaceProfile name="1" src="1" />
       <SpaceProfile name="2" src="2" />
       <SpaceProfile name="3" src="3" />

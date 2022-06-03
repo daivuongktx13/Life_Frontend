@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: ChatVue
+    component: MainPageVue
   },
   {
     path: '/registration',

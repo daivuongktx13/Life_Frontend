@@ -1,5 +1,5 @@
 <template>
-  <div id="mainpage" class="scroll-smooth">
+  <div id="mainpage">
     <NavBar />
     <HomeContent />
     <Category />
@@ -21,3 +21,7 @@ export default {
   methods: {},
 };
 </script>
+
+
+<style>
+</style>

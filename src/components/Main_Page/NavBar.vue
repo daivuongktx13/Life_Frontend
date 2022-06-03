@@ -1,12 +1,12 @@
 <template>
-    <div class="flex flex-row py-3 items-center border sticky top-0 z-10 bg-white/80 shadow-md">
-    <div class="basis-1/2 pl-5 text-xl font-semibold"><a href="">Life</a></div>
-    <div class="basis-1/2 flex flex-row justify-end space-x-8 text-xl items-center pr-10
-    font-medium"> 
-      <div class="hover:text-sky-500 transition" v-bind:class="{active: nav['home']}"><a href="#home">Home</a></div>
-      <div class="hover:text-sky-500 transition" v-bind:class="{active: nav['category']}"><a href="#category">Category</a></div>
+    <div class="flex flex-col md:flex-row py-3 items-center border static md:sticky top-0 z-10 bg-white/80 shadow-md">
+    <div class="basis-1/2 pl-0 md:pl-5 text-xl font-bold md:font-semibold"><a href="">Life</a></div>
+    <div class="basis-1/2 flex flex-col md:flex-row justify-end space-y-0 md:space-x-8 text-xl items-center md:pr-10
+    font-normal md:font-medium"> 
+      <div class="hover:text-sky-500 transition" v-bind:class="{active: getActive('home')}"><a href="#home">Home</a></div>
+      <div class="hover:text-sky-500 transition" v-bind:class="{active: getActive('category')}"><a href="#category">Category</a></div>
       <div class="hover:text-sky-500 transition"><a href="">Explore</a></div>
-      <div class="hover:text-sky-500 transition" v-bind:class="{active: nav['about']}"><a href="#about">About</a></div>
+      <div class="hover:text-sky-500 transition" v-bind:class="{active: getActive('about')}"><a href="#about">About</a></div>
       <button class="from-violet-500 to-cyan-600 bg-gradient-to-r 
       text-xs rounded-full py-1 px-2 font-normal text-white hover:scale-125 transition-all">
       <span>
@@ -44,6 +44,7 @@ export default {
         }
       })
     });
+    
     const home = document.querySelector("#home");
     const category = document.querySelector("#category");
     const about = document.querySelector("#about");
@@ -51,6 +52,11 @@ export default {
     observer.observe(category);
     observer.observe(about);
   },
+  methods:{
+    getActive(section){
+      return this.nav[section] && window.innerWidth >= 768;
+    }
+  }
 }
 </script>
 
@@ -60,4 +66,5 @@ export default {
   color: rgb(14, 50, 233);
   border-bottom: 1px solid blue;
 }
+
 </style>
