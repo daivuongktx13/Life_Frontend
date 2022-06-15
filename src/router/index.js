@@ -6,6 +6,7 @@ import LoginView from '../views/LoginView.vue'
 import MainPageVue from '../views/MainPage.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import ResetView from '../views/ResetView.vue'
+import RoomView from '../views/RoomView.vue'
 
 Vue.use(VueRouter)
 
@@ -39,7 +40,12 @@ const routes = [
     path: '/welcome',
     name: 'welcome',
     component: () => import("../views/WelcomeView.vue"),
-  }
+  },
+  {
+    path: '/vid',
+    name: 'room',
+    component: RoomView
+  },
 ]
 
 const router = new VueRouter({
