@@ -1,17 +1,21 @@
 <template>
-  <!-- <div >
-    <video id="videoTest" autoplay loop>
+  <div class="overflow-hidden" style="width: 100vw; height: 100vh">
+    <video
+      id="video"
+      height="100%"
+      width="auto"
+      style="
+        max-width: 10000%;
+        max-height: 5000%;
+        min-width: 100%;
+        min-height: 100%;
+      "
+      autoplay loop muted
+    >
       <source src="../../assets/bg_vd.mp4" type="video/mp4" />
     </video>
-  </div> -->
-
-  <div class="video-container">
-  <video>
-    <source src="../../assets/bg_vd.mp4" type="video/mp4" />
-  </video>
-</div>
-
-
+  </div>
+  <!-- <video id="video-player" src="../../assets/bg_vd.mp4" type="video/mp4" autoplay muted loop></video> -->
 </template>
 
 <script>
@@ -21,9 +25,22 @@ export default {
     return {};
   },
   mounted() {
-    var video = document.getElementById("videoTest");
-    video.muted = true; // Must be muted so that video can play
-    video.play();
+    // var video = document.getElementById("video");
+    // video.muted = true; // Must be muted so that video can play
+    // video.play();
   },
 };
 </script>
+
+<style>
+#video-player {
+  position: fixed;
+  /* top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%); */
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  width: auto;
+}
+</style>
