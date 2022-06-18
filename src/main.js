@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import control from './store/control'
 
+import Chat from 'vue-beautiful-chat'
+Vue.use(Chat)
+
 import './assets/tailwind.css'
 
 

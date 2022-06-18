@@ -1,17 +1,19 @@
 <template>
-    <div class="relative overflow-clip">
-        <NavVue />
-        <VideoPlayer />
-    </div>
+  <div class="relative">
+    <VideoPlayer/>
+    <Widget />
+    <ChatBox />
+  </div>
 </template>
 
 
 <script>
 import VideoPlayer from "../components/Room_Page/VideoPlayer.vue";
-import NavVue from "../components/Room_Page/Nav.vue";
+import Widget from "../components/Room_Page/Widget.vue";
+import ChatBox from "../components/Room_Page/ChatBox.vue";
 export default {
   name: "RoomView",
-  components: { VideoPlayer, NavVue },
+  components: { VideoPlayer, Widget, ChatBox },
 };
 </script>
 

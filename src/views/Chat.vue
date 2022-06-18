@@ -11,6 +11,7 @@ import Stomp from "webstomp-client";
 export default {
   name: "Chat",
   data() {
+    
     return {
       client: null,
     };

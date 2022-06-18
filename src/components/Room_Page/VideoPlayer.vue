@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden" style="width: 100vw; height: 100vh">
+  <div class="overflow-hidden z-0" style="width: 100vw; height: 100vh">
     <video
       id="video"
       height="100%"

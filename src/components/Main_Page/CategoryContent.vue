@@ -24,7 +24,7 @@ export default {
   components: { SpaceProfile },
   computed: {
     getMode(){
-        return search.getters.getMode;
+      return search.getters.getMode;
     }
   }
 };

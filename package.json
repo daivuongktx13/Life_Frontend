@@ -18,6 +18,7 @@
     "core-js": "^3.14.0",
     "flowbite": "^1.4.7",
     "gsap": "^3.10.4",
+    "jquery": "^3.6.0",
     "mini-css-extract-plugin": "^1.6.0",
     "node-sass": "^7.0.1",
     "postcss": "^8",
@@ -25,6 +26,7 @@
     "tailwindcss": "^3",
     "tw-elements": "^1.0.0-alpha12",
     "vue": "^2.6.14",
+    "vue-beautiful-chat": "^2.5.0",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2",
     "webstomp-client": "^1.2.6"

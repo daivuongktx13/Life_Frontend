@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NotFoundVue from '../components/NotFound.vue'
-import ChatVue from '../views/Chat.vue'
+// import ChatVue from '../views/Chat.vue'
 import LoginView from '../views/LoginView.vue'
 import MainPageVue from '../views/MainPage.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import ResetView from '../views/ResetView.vue'
 import RoomView from '../views/RoomView.vue'
+// import Test from '../views/Test.vue'
 
 Vue.use(VueRouter)
 
