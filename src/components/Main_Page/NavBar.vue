@@ -15,7 +15,7 @@
         <div class="hover:text-sky-500 transition" v-bind:class="{active: getActive('category')}"><a href="#category">Category</a></div>
         <div class="hover:text-sky-500 transition"><a href="">Explore</a></div>
         <div class="hover:text-sky-500 transition" v-bind:class="{active: getActive('about')}"><a href="#about">About</a></div>
-        <button class="from-violet-500 to-cyan-600 bg-gradient-to-r 
+        <button @click="goToRoom" class="from-violet-500 to-cyan-600 bg-gradient-to-r 
           text-xs rounded-full py-1 px-2 font-normal text-white hover:scale-125 transition-all">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -64,6 +64,9 @@ export default {
   methods:{
     getActive(section){
       return this.nav[section] && window.innerWidth >= 768;
+    },
+    goToRoom(){
+      this.$router.push('/vid');
     }
   }
 }
