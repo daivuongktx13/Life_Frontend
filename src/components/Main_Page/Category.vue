@@ -4,22 +4,13 @@
       <em>Choose a category to start:</em>
     </div>
     <div class="flex flex-wrap justify-center space-x-2 w-1/3 mx-auto">
-      <CategoryNode name="Nature"/>
-      <CategoryNode name="Pets"/>
-      <CategoryNode name="Snow"/>
-      <CategoryNode name="Space"/>
-      <CategoryNode name="Game"/>
-      <CategoryNode name="Code"/>
-      <CategoryNode name="City"/>
-      <CategoryNode name="Cafe"/>
-      <CategoryNode name="Beach"/>
-      <CategoryNode name="Anime"/>
+      <CategoryNode v-for="(space, index) in categoryList" :name="space" :key="index" />
     </div>
   </div>
 </template>
 
 <script>
-
+import category from "../../store/category";
 import CategoryNode from "./CategoryNode.vue";
 export default {
   name: "Category",
@@ -27,5 +18,10 @@ export default {
   methods: {
     
   },
+  computed: {
+    categoryList(){
+      return category.getters.getSpaceLists;
+    }
+  }
 };
 </script>

@@ -3,10 +3,9 @@
     <div class="overflow-clip z-20">
       <div class="inline">
         <button
+          id="trigger-list"
           class="hover:scale-110"
-          data-collapse-toggle="space-list"
-          aria-controls="space-list"
-          aria-expanded="false"
+          
         >
           <img
             class="inline"
@@ -16,7 +15,7 @@
       </div>
       <div class="inline">
         <a
-          class="p-3 rounded-md font-bold text-white italic"
+          class="p-3 rounded-md font-bold text-white"
           style="background-color: rgb(78, 140, 255)"
           href="/"
           >Life</a

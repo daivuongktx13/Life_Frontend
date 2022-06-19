@@ -2,10 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NotFoundVue from '../components/NotFound.vue'
 // import ChatVue from '../views/Chat.vue'
-import LoginView from '../views/LoginView.vue'
+import LoginView from '../views/Login.vue'
 import MainPageVue from '../views/MainPage.vue'
-import RegistrationView from '../views/RegistrationView.vue'
-import ResetView from '../views/ResetView.vue'
+import RegistrationView from '../views/Registration.vue'
+// import ResetView from '../views/ResetView.vue'
 import RoomView from '../views/RoomView.vue'
 // import Test from '../views/Test.vue'
 
@@ -35,7 +35,7 @@ const routes = [
   {
     path: '/reset',
     name: 'reset',
-    component: ResetView
+    component: NotFoundVue
   },
   {
     path: '/welcome',
@@ -43,7 +43,7 @@ const routes = [
     component: () => import("../views/WelcomeView.vue"),
   },
   {
-    path: '/vid',
+    path: '/room/:category',
     name: 'room',
     component: RoomView
   },

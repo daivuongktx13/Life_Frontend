@@ -1,9 +1,8 @@
 <template>
-  <div class="fixed z-10 top-16 left-0">
+  <div id="space-list" class="fixed z-10 top-16 left-0">
     <div class="flex flex-col items-center">
       <div
-        id="space-list"
-        class="hidden flex-col pl-2 items-center space-y-3 w-14"
+        class="flex-col pl-2 items-center space-y-3 w-14"
       >
         <SpaceIcon name="Code" />
         <SpaceIcon name="Pets" />
@@ -19,9 +18,24 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import SpaceIcon from "./SpaceIcon.vue";
 export default{
     name: 'SpaceList',
-    components: {SpaceIcon}
+    components: {SpaceIcon},
+    computed:{
+      
+    },
+    mounted(){
+      $(() => {
+        $("#trigger-list").click(function(){
+          if($('#space-list').is(':hidden') == true){
+            $("#space-list").show('slow');
+          } else {
+            $("#space-list").hide("fast");
+          }
+        });
+      })
+    }
 }
 </script>

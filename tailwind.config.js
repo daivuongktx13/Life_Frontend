@@ -1,6 +1,6 @@
 module.exports = {
-  content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}', "./node_modules/flowbite/**/*.js"
-, './src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
+  content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}', './src/**/*.{html,js}'],
+// , "./node_modules/flowbite/**/*.js" , './node_modules/tw-elements/dist/js/**/*.js'
   theme: {
     extend: {
       animation: {
@@ -17,7 +17,7 @@ module.exports = {
       }
     },
   },
-  plugins: [
-    require('flowbite/plugin')
-  ]
+  // plugins: [
+  //   require('flowbite/plugin')
+  // ]
 }

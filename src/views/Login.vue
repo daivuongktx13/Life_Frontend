@@ -1,0 +1,157 @@
+<template>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div class="login100-pic js-tilt" data-tilt>
+          <img src="../assets/login/images/img-01.png" alt="IMG" />
+        </div>
+
+        <div class="login100-form validate-form">
+          <span class="login100-form-title">Login </span>
+
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Valid email is required: ex@abc.xyz"
+          >
+            <input
+              class="input100"
+              type="email"
+              v-model="username"
+              placeholder="Email"
+              required
+            />
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Password is required"
+          >
+            <input
+              class="input100"
+              type="password"
+              v-model="password"
+              placeholder="Password"
+              required
+            />
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button @click="handleSubmit" class="login100-form-btn">Login</button>
+          </div>
+
+          <div class="text-center p-t-12">
+            <span class="txt1"> Forgot </span>
+            <a class="txt2" href="#"> Username / Password? </a>
+          </div>
+          <transition name="slide-fade">
+            <div v-if="showError" class="text-center">
+              <div class="txt2 text-red-700">Wrong username or password!</div>
+            </div>
+          </transition>
+          <transition name="slide-fade">
+            <div v-if="showSuccess" class="text-center">
+              <div class="txt2 text-green-400">Login complete!</div>
+            </div>
+          </transition>
+          <div class="text-center p-t-90">
+            <a class="txt2" href="/registration">
+              Create your Account
+              <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import $ from 'jquery'
+import axios from "axios";
+// @ is an alias to /src
+// import HelloWorld from '@/components/HelloWorld.vue'
+export default {
+  name: "LoginView",
+  components: {},
+  data() {
+    return {
+      username: "",
+      password: "",
+      showError: false,
+      showSuccess: false,
+    };
+  },
+  create() {
+    $(() => {
+      $('.js-tilt').tilt({
+			scale: 1.1
+		})
+    })
+    
+  },
+  methods: {
+    async handleSubmit() {
+      await axios
+        .post("http://localhost:8080/login", {
+          username: this.username,
+          password: this.password,
+        })
+        .then((response) => {
+          localStorage.setItem("token", response.data.jwt);
+          console.log("Login complete!");
+          this.showSuccess = true;
+          setTimeout(() => {
+            this.showSuccess = false;
+          }, 1000);
+          setTimeout(() => {
+            this.$router.push("/welcome");
+          }, 1700);
+        })
+        .catch((error) => {
+          if (error.response.status == 401) {
+            this.showError = true;
+            setTimeout(() => {
+              this.showError = false;
+            }, 3000);
+          }
+        })
+        .finally(() => {
+          this.password = "";
+          this.username = "";
+        });
+    },
+  },
+  props: {},
+};
+</script>
+
+<style lang="scss" scoped>
+@import "../assets/login/css/util.css";
+@import "../assets/login/css/main.css";
+@import "../assets/login/vendor/bootstrap/css/bootstrap.min.css";
+@import "../assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
+@import "../assets/login/vendor/animate/animate.css";
+@import "../assets/login/vendor/css-hamburgers/hamburgers.min.css";
+@import "../assets/login/vendor/select2/select2.min.css";
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+</style>

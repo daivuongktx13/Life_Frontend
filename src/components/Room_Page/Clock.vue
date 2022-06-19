@@ -2,25 +2,14 @@
   <div class="flex flex-row-reverse items-center">
     <div>
       <button
+        id="trigger-clock"
         class="w-16 h-16 rounded-full"
         style="background-color: rgb(78, 140, 255)"
-        data-collapse-toggle="pomodoro"
-        aria-controls="pomodoro"
-        aria-expanded="false"
       >
         <i class="fa-solid fa-xl fa-stopwatch text-white"></i>
       </button>
     </div>
-    <!-- <div class="w-1/2 h-1/2 flex flex-col items-center p-3 mr-3 rounded-md" 
-    style="background-color: rgb(78, 140, 255)"  id="timer-block">
-        <div>Pomodoro</div>
-        <div>
-            <div>00 : 00</div>
-        </div>
-        <button><i class="fas fa-play"></i></button>
-        
-    </div> -->
-    <div id="pomodoro" class="hidden">
+    <div id="pomodoro">
       <div id="clock">
         <div id="timer">
           <div id="title">Ready?</div>
@@ -60,6 +49,10 @@ export default {
   name: "Clock",
   created() {
     this.setUpClock();
+  },
+  data(){
+    return {
+    }
   },
   methods: {
     setUpClock() {
@@ -264,7 +257,19 @@ export default {
     },
   },
   mounted() {
-    this.setUpClock();
+    // this.setUpClock();
+    $("#pomodoro").hide();
+    $("#trigger-clock").click(function(){
+          if($('#pomodoro').is(':hidden') == true){
+            $("#pomodoro").show('slow');
+            $("#volume-controller").hide("fast");
+            if ($(window).width() < 428) {
+              $("#space-list").hide("fast");
+            }
+          } else {
+            $("#pomodoro").hide("fast");
+          }
+        });
   },
 };
 </script>
@@ -415,6 +420,8 @@ export default {
       align-items: center;
       display: flex;
       flex-direction: column;
+      margin-left: 2px;
+      margin-right: 2px;
     }
     input[type="number"] {
       background: linear-gradient(lighten(white, 20), lighten(white, 22));
@@ -449,4 +456,3 @@ audio {
   display: none;
 }
 </style>
-

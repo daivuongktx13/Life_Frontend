@@ -3,7 +3,7 @@
     <NavBar />
     <HomeContent />
     <Category />
-    <CategoryContent/>
+    <!-- <CategoryContent/> -->
     <About />
   </div>
 </template>
@@ -13,11 +13,11 @@
 import NavBar from "../components/Main_Page/NavBar.vue";
 import HomeContent from "../components/Main_Page/HomeContent.vue";
 import Category from "../components/Main_Page/Category.vue";
-import CategoryContent from "../components/Main_Page/CategoryContent.vue";
+// import CategoryContent from "../components/Main_Page/CategoryContent.vue";
 import About from "../components/Main_Page/About.vue";
 export default {
   name: "MainPage",
-  components: { NavBar, HomeContent, Category, CategoryContent, About },
+  components: { NavBar, HomeContent, Category, About },
   methods: {},
 };
 </script>

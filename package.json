@@ -16,7 +16,6 @@
     "autoprefixer": "^10",
     "axios": "^0.21.1",
     "core-js": "^3.14.0",
-    "flowbite": "^1.4.7",
     "gsap": "^3.10.4",
     "jquery": "^3.6.0",
     "mini-css-extract-plugin": "^1.6.0",

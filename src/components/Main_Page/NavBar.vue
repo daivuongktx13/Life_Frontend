@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import category from '../../store/category';
 export default {
     name: "NavBar",
     data() {
@@ -38,6 +39,7 @@ export default {
           "category": false,
           "about": false,
         },
+        listSpaces:['']
       }
     },
     mounted() {
@@ -66,7 +68,14 @@ export default {
       return this.nav[section] && window.innerWidth >= 768;
     },
     goToRoom(){
-      this.$router.push('/vid');
+      var spaces = category.getters.getSpaceLists;
+      var randomItem = spaces[Math.floor(Math.random()*spaces.length)];
+      this.$router.push(`/room/${randomItem.toLowerCase()}`);
+    }
+  },
+  computed: {
+    spaces(){
+      category.getters.getSpaceLists;
     }
   }
 }
