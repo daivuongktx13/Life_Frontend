@@ -16,7 +16,7 @@
         <SpaceIcon name="Snow" />
       </div>
     </div>
-    <div class="cursor-pointer" id="trigger-list">
+    <div class="cursor-pointer pt-16" id="trigger-list">
       <i id="trigger-list-left" class="fa-solid text-white fa-lg py-3 px-3 fa-caret-left rounded-r-md" style="background-color: rgb(60, 69, 81);"></i>
       <i id="trigger-list-right" class="fa-solid text-white fa-lg py-3 px-3 fa-caret-right rounded-r-md" style="background-color: rgb(60, 69, 81);display: none;"></i>
     </div>

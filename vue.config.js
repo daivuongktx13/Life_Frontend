@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   devServer: {
-    port: '3000',
+    port: '8080',
     // overlay: {
     //   warnings: true,
     //   errors: true

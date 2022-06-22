@@ -4,7 +4,7 @@
       <button
         id="trigger-clock"
         class="w-16 h-16 rounded-full"
-        style="background-color:  rgb(35, 41, 49)"
+        style="background-color: rgb(35, 41, 49)"
       >
         <i class="fa-solid fa-xl fa-stopwatch text-white"></i>
       </button>

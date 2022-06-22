@@ -1,8 +1,9 @@
 <template>
   <div id="about">
     <div class="grid grid-cols-2 mx-5 mt-10 pb-4">
-      <div class="flex justify-start font-bold text-sm md:text-xl">
-        <a href="">Life</a>
+      <!-- <div class="flex justify-start font-bold text-sm md:text-xl"> -->
+      <div>
+        <a class="font-bold text-md md:text-xl" href="">Life</a>
       </div>
       <div class="flex justify-end mr-5">
         <a
@@ -31,12 +32,12 @@
         <ul class="space-y-3 text-sm md:text-base">
           <li>Home</li>
           <li>Category</li>
-          <li>Explore</li>
+          <!-- <li>Explore</li> -->
           <li>About</li>
         </ul>
       </div>
     </div>
-    <div class="flex justify-center text-center mx-5 py-5 text-sm md:text-xl font-semibold">
+    <div class="flex justify-center text-center mx-5 py-5 text-sm md:text-lg font-semibold">
       Copyright © 2022 Project Life. All Rights Reserved.
     </div>
   </div>

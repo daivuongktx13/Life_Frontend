@@ -15,7 +15,7 @@
       >
         <div>
           <i
-            class="fa-solid fa-user text-white p-4 rounded-full"
+            class="fa-solid fa-user text-white p-5 rounded-full"
             style="background-color: black"
           ></i>
           <button>
@@ -25,7 +25,7 @@
             ></i>
           </button>
         </div>
-        <div class="pr-2 font-bold text-white">User #</div>
+        <div class="pr-2 text-white">User #</div>
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@
         <i v-if="high" class="fa-solid fa-volume-high fa-lg text-white"></i>
       </button>
     </div>
-    <div id="volume-controller" class="slidecontainer mr-3 hidden">
+    <div id="volume-controller" class="slidecontainer p-2 rounded-md mr-3 hidden" style="background-color: rgb(35, 41, 49);">
       <div class=" flex flex-row-reverse">
         <input
         v-model="volume"
@@ -22,7 +22,7 @@
         class="slider"
         id="myRange"
       />
-      <div class="mr-3 bg-blue-500 p-1 text-white rounded-full">
+      <div class="mr-3 p-1 text-white rounded-full" >
         {{ volume }}
       </div>
       </div>
