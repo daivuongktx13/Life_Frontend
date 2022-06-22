@@ -136,7 +136,7 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/login/css/util.css";
 @import "../assets/login/css/main.css";
-@import "../assets/login/vendor/bootstrap/css/bootstrap.min.css";
+// @import "../assets/login/vendor/bootstrap/css/bootstrap.min.css";
 @import "../assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
 @import "../assets/login/vendor/animate/animate.css";
 @import "../assets/login/vendor/css-hamburgers/hamburgers.min.css";

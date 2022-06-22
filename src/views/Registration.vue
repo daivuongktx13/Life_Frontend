@@ -41,12 +41,18 @@
                 </div>
               </div>
             </div>
-            <div>
+            <div class="flex flex-row space-x-2">
               <button
                 @click="handleSubmit"
-                class="rounded-md w-1/5 bg-red-500 text-white p-3 font-bold"
+                class="hover:bg-red-800 basis-1/2 rounded-md w-1/2 md:w-1/5 bg-red-500 text-white p-3 font-bold"
               >
                 REGISTER
+              </button>
+              <button
+                @click="pushToLogin()"
+                class="hover:bg-sky-800 basis-1/2 rounded-md w-1/2 md:w-1/5 bg-sky-500 text-white p-3 font-bold"
+              >
+                Back To Login
               </button>
             </div>
             <transition name="slide-fade">
@@ -109,6 +115,9 @@ export default {
           console.log(error);
         });
     },
+    pushToLogin(){
+      this.$router.push('/login');
+    }
   },
 };
 </script>
@@ -116,7 +125,7 @@ export default {
 
 <style scoped>
 @import "../assets/reg/vendor/mdi-font/css/material-design-iconic-font.min.css";
-@import "../assets/reg/vendor/font-awesome-4.7/css/font-awesome.min.css";
+/* @import "../assets/reg/vendor/font-awesome-4.7/css/font-awesome.min.css"; */
 @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i";
 @import "../assets/reg/vendor/select2/select2.min.css";
 @import "../assets/reg/vendor/datepicker/daterangepicker.css";

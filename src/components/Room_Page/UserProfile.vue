@@ -4,7 +4,7 @@
       <button id="trigger-profile" class="m-1">
         <i
           class="fa-solid fa-user text-white p-3 rounded-md"
-          style="background-color: rgb(78, 140, 255)"
+          style="background-color: rgb(35, 41, 49)"
         ></i>
       </button>
     </div>
@@ -25,7 +25,7 @@
             ></i>
           </button>
         </div>
-        <div class="pr-2 font-bold">User #</div>
+        <div class="pr-2 font-bold text-white">User #</div>
       </div>
     </div>
   </div>
@@ -58,6 +58,6 @@ export default {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  background-color: rgb(78, 140, 255);
+  background-color: rgb(35, 41, 49);
 }
 </style>

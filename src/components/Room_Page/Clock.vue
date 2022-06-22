@@ -4,7 +4,7 @@
       <button
         id="trigger-clock"
         class="w-16 h-16 rounded-full"
-        style="background-color: rgb(78, 140, 255)"
+        style="background-color:  rgb(35, 41, 49)"
       >
         <i class="fa-solid fa-xl fa-stopwatch text-white"></i>
       </button>
@@ -12,15 +12,15 @@
     <div id="pomodoro">
       <div id="clock">
         <div id="timer">
-          <div id="title">Ready?</div>
+          <div id="title">Timer</div>
           <div id="countdown">
             <span id="minutes">30</span>
             <span id="seconds">00</span>
           </div>
           <div id="controls" class="reset">
-            <div class="scale-125" id="start"><i class="fas fa-play"></i> Start</div>
-            <div class="scale-125" id="pause"><i class="fas fa-pause"></i> Pause</div>
-            <div class="scale-125" id="reset"><i class="fas fa-sync-alt"></i> Reset</div>
+            <div class="scale-125 text-green-500" id="start"><i class="fas fa-play"></i> Start</div>
+            <div class="scale-125 text-yellow-500" id="pause"><i class="fas fa-pause"></i> Pause</div>
+            <div class="scale-125 text-emerald-100" id="reset"><i class="fas fa-sync-alt"></i> Reset</div>
           </div>
         </div>
       </div>
@@ -282,7 +282,7 @@ export default {
   position: fixed;
   bottom: 7rem;
   right: 2rem;
-  background: rgb(78, 140, 255);
+  background:  rgb(35, 41, 49);
   padding: 1rem;
   #clock {
     margin-bottom: 1rem;
@@ -307,7 +307,7 @@ export default {
         }
       }
       #countdown {
-        color: black;
+        color: white;
         display: flex;
         font-size: 43px;
         font-weight: 600;
@@ -342,7 +342,7 @@ export default {
             top: -1px;
           }
           &:hover {
-            color: darken(white, $hover);
+            color: darken(green, $hover);
           }
         }
         #pause {
@@ -352,7 +352,7 @@ export default {
             transform: scaleX(0.84);
           }
           &:hover {
-            color: darken(white, $hover);
+            color: darken(yellow, $hover);
           }
         }
         #reset {

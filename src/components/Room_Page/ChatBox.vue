@@ -60,17 +60,20 @@ export default {
       showTypingIndicator: "", // when set to a value matching the participant.id it shows the typing indicator for the specific user
       colors: {
         header: {
-          bg: "#4e8cff",
+          // bg: "#4e8cff",
+          bg: "#232931",
           text: "#ffffff",
         },
         launcher: {
-          bg: "#4e8cff",
+          // bg: "#4e8cff",
+          bg: "#232931",
         },
         messageList: {
           bg: "#ffffff",
         },
         sentMessage: {
-          bg: "#4e8cff",
+          // bg: "#4e8cff",
+          bg: "#232931",
           text: "#ffffff",
         },
         receivedMessage: {

@@ -1,33 +1,17 @@
 <template>
   <div class="fixed top-0 left-0">
-    <div class="overflow-clip z-20">
-      <div class="inline">
-        <button
-          id="trigger-list"
-          class="hover:scale-110"
-          
-        >
-          <img
-            class="inline"
-            src="https://img.icons8.com/cotton/64/undefined/menu.png"
-          />
-        </button>
-      </div>
-      <div class="inline">
-        <a
-          class="p-3 rounded-md font-bold text-white"
-          style="background-color: rgb(78, 140, 255)"
-          href="/"
-          >Life</a
-        >
-      </div>
-      <!-- 35, 41, 49 -->
+    <div
+      class="py-2 px-4 m-2 rounded-md text-white cursor-pointer"
+      style="background-color: rgb(35, 41, 49);font-family: Georgia, serif;"
+      @click="pushToMain()"
+      >
+      Life
     </div>
     <UserProfileVue />
     <SpaceListVue />
     <div class="fixed bottom-1/4 right-6 flex flex-col items-end space-y-2">
       <AudioController />
-      <ClockVue/>
+      <ClockVue />
     </div>
   </div>
 </template>
@@ -40,6 +24,11 @@ import ClockVue from "./Clock.vue";
 export default {
   name: "Nav",
   components: { SpaceListVue, UserProfileVue, AudioController, ClockVue },
+  methods:{
+    pushToMain(){
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 

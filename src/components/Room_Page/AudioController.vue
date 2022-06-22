@@ -4,7 +4,7 @@
       <button
         id="trigger-volume"
         class="w-16 h-16 rounded-full"
-        style="background-color: rgb(78, 140, 255)"
+        style="background-color: rgb(35, 41, 49)"
       >
         <i v-if="muted" class="fa-solid fa-volume-xmark fa-lg text-white"></i>
         <i v-if="low" class="fa-solid fa-volume-low fa-lg text-white"></i>
