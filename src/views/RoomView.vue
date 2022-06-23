@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative bg-black">
     <VideoPlayer/>
     <Widget />
     <ChatBox />

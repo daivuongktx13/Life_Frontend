@@ -17,7 +17,7 @@
             <span id="minutes">30</span>
             <span id="seconds">00</span>
           </div>
-          <div id="controls" class="reset">
+          <div id="controls" clas s="reset">
             <div class="scale-125 text-green-500" id="start"><i class="fas fa-play"></i> Start</div>
             <div class="scale-125 text-yellow-500" id="pause"><i class="fas fa-pause"></i> Pause</div>
             <div class="scale-125 text-emerald-100" id="reset"><i class="fas fa-sync-alt"></i> Reset</div>
@@ -102,8 +102,13 @@ export default {
           $pause.click(() => pause());
           $reset.click(() => reset());
           $theme.click((e) => audioSelect(e));
+          $reset.hide();
+          $pause.hide();
         }
         function startSession() {
+          $start.hide();
+          $pause.show();
+          $reset.hide();
           sessionNum++;
           countType = "session";
           $options.slideUp(143);
@@ -146,6 +151,9 @@ export default {
         }
         function pause() {
           sessionNum--;
+          $start.show();
+          $reset.show();
+          $pause.hide();
           $audio.animate({ volume: 0 }, 1000);
           clearInterval(countdown);
           $options.slideDown(143);
@@ -257,7 +265,6 @@ export default {
     },
   },
   mounted() {
-    // this.setUpClock();
     $("#pomodoro").hide();
     $("#trigger-clock").click(function(){
           if($('#pomodoro').is(':hidden') == true){
@@ -342,7 +349,7 @@ export default {
             top: -1px;
           }
           &:hover {
-            color: darken(green, $hover);
+            color: darken(white, $hover);
           }
         }
         #pause {
@@ -352,7 +359,7 @@ export default {
             transform: scaleX(0.84);
           }
           &:hover {
-            color: darken(yellow, $hover);
+            color: darken(white, $hover);
           }
         }
         #reset {
