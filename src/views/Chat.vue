@@ -17,10 +17,10 @@ export default {
     };
   },
   created() {
-    const connection = new SockJS("http://localhost:8080/connect");
+    const connection = new SockJS("http://localhost:8080/ws");
     const stomp = Stomp.over(connection);
     stomp.connect({
-      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwb3JvMTMwMSIsImV4cCI6MTY1MjQ0NTcwNSwiaWF0IjoxNjUyNDA5NzA1fQ.ZNpLYOBduY62ETKqu8Qv4yiHBenpkzt9ZEFSLWs5_Wc"
+      "Authorization": "Bearer ".localStorage.getItem("jwt"),
     },
       (frame) => {
         console.log(frame);

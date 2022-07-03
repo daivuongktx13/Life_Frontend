@@ -9,7 +9,6 @@
       :newMessagesCount="newMessagesCount"
       :isOpen="isChatOpen"
       :close="closeChat"
-      
       :open="openChat"
       :showEmoji="true"
       :showFile="true"
@@ -31,23 +30,21 @@
 
 
 <script>
+import SockJS from "sockjs-client";
+import Stomp from "webstomp-client";
+import { roomApi } from "../../api/apiServices";
+import axios from "axios";
 export default {
   name: "Chat",
   data() {
     return {
       participants: [
-        {
-          id: "user1",
-          name: "Matteo",
-          imageUrl:
-            "https://avatars3.githubusercontent.com/u/1915989?s=230&v=4",
-        },
-        {
-          id: "user2",
-          name: "Support",
-          imageUrl:
-            "https://avatars3.githubusercontent.com/u/37018832?s=200&v=4",
-        },
+        // {
+        //   id: "user1",
+        //   name: "Matteo",
+        //   imageUrl:
+        //     "https://avatars3.githubusercontent.com/u/1915989?s=230&v=4",
+        // },
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
@@ -127,6 +124,56 @@ export default {
       m.isEdited = true;
       m.data.text = message.data.text;
     },
+  },
+  mounted() {
+    const connection = new SockJS("http://localhost:8080/ws");
+    const stomp = Stomp.over(connection);
+    let jwt = localStorage.getItem("jwt");
+    stomp.connect(
+      {
+        Authorization: `Bearer ${jwt}`,
+        Space: this.$route.params.category,
+      },
+      (frame) => {
+        stomp.subscribe(
+          `/public/${this.$route.params.category}`,
+          (message) => {
+          },
+          {}
+        );
+
+        stomp.subscribe(
+          `/public/special/${this.$route.params.category}`,
+          (specialMessage) => {
+            let json_mess = JSON.parse(specialMessage.body)
+            switch(json_mess['type']){
+              case "JOIN":
+                this.participants.push({
+                  id: json_mess['sender'],
+                  name: json_mess['sender'],
+                  imageUrl: null,
+                })
+                break
+              case "LEAVE":
+                this.participants =  this.participants.filter((value, index, arr) => {
+                  return value['id'] != json_mess['sender'];
+                });
+                break
+            }
+          },
+          {}
+        );
+
+        roomApi
+          .getAllUsersInSpace(this.$route.params.category)
+          .then((response) => {
+            this.participants = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    );
   },
 };
 </script>

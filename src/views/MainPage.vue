@@ -19,6 +19,11 @@ export default {
   name: "MainPage",
   components: { NavBar, HomeContent, Category, About },
   methods: {},
+  mounted(){
+    if(localStorage.getItem("jwt") === null){
+      this.$router.push("/login");
+    }
+  },
 };
 </script>
 

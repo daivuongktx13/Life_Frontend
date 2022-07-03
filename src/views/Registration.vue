@@ -19,7 +19,12 @@
               <div class="name">Email</div>
               <div class="value">
                 <div class="input-group">
-                  <input v-model="username" class="input--style-5" type="email" required />
+                  <input
+                    v-model="username"
+                    class="input--style-5"
+                    type="email"
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -28,7 +33,12 @@
               <div class="name">Password</div>
               <div class="value">
                 <div class="input-group">
-                  <input v-model="password" class="input--style-5" type="password" required />
+                  <input
+                    v-model="password"
+                    class="input--style-5"
+                    type="password"
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -37,20 +47,45 @@
               <div class="name">Confirmed Password</div>
               <div class="value">
                 <div class="input-group">
-                  <input v-model="confirmedPassword" class="input--style-5" type="password" required/>
+                  <input
+                    v-model="confirmedPassword"
+                    class="input--style-5"
+                    type="password"
+                    required
+                  />
                 </div>
               </div>
             </div>
             <div class="flex flex-row space-x-2">
               <button
                 @click="handleSubmit"
-                class="hover:bg-red-800 basis-1/2 rounded-md w-1/2 md:w-1/5 bg-red-500 text-white p-3 font-bold"
+                class="
+                  hover:bg-red-800
+                  basis-1/2
+                  rounded-md
+                  w-1/2
+                  md:w-1/5
+                  bg-red-500
+                  text-white
+                  p-3
+                  font-bold
+                "
               >
                 REGISTER
               </button>
               <button
                 @click="pushToLogin()"
-                class="hover:bg-sky-800 basis-1/2 rounded-md w-1/2 md:w-1/5 bg-sky-500 text-white p-3 font-bold"
+                class="
+                  hover:bg-sky-800
+                  basis-1/2
+                  rounded-md
+                  w-1/2
+                  md:w-1/5
+                  bg-sky-500
+                  text-white
+                  p-3
+                  font-bold
+                "
               >
                 Back To Login
               </button>
@@ -73,7 +108,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { authApi } from "../api/apiServices";
 export default {
   name: "Registration",
   props: {},
@@ -96,8 +131,8 @@ export default {
         }, 2000);
         return;
       }
-      axios
-        .post("http://localhost:8080/registration", {
+      authApi
+        .register({
           username: this.username,
           password: this.password,
         })
@@ -109,15 +144,15 @@ export default {
           setTimeout(() => {
             this.$router.push("/login");
           }, 1700);
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           console.log(error);
         });
     },
-    pushToLogin(){
-      this.$router.push('/login');
-    }
+    pushToLogin() {
+      this.$router.push("/login");
+    },
   },
 };
 </script>

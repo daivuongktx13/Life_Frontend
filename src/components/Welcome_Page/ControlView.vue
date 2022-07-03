@@ -10,7 +10,7 @@
       >
         {{ animation }}
       </li>
-      <li class="start" href="/">Start</li>
+      <li class="start" @click="pushToMain()">Start</li>
     </ul>
     <ul class="paginationControl">
       <li id="previous" v-if="getIndexMode != 0" @click="previousMode">
@@ -55,6 +55,9 @@ export default {
       localStorage.removeItem("token");
       this.$router.push("/login");
     },
+    pushToMain(){
+      this.$router.push("/");
+    }
   },
 };
 </script>

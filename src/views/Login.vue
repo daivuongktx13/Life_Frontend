@@ -44,7 +44,9 @@
           </div>
 
           <div class="container-login100-form-btn">
-            <button @click="handleSubmit" class="login100-form-btn">Login</button>
+            <button @click="handleSubmit" class="login100-form-btn">
+              Login
+            </button>
           </div>
 
           <div class="text-center p-t-12">
@@ -74,8 +76,8 @@
 </template>
 
 <script>
-import $ from 'jquery'
-import axios from "axios";
+import $ from "jquery";
+import { authApi } from "../api/apiServices";
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 export default {
@@ -91,21 +93,20 @@ export default {
   },
   create() {
     $(() => {
-      $('.js-tilt').tilt({
-			scale: 1.1
-		})
-    })
-    
+      $(".js-tilt").tilt({
+        scale: 1.1,
+      });
+    });
   },
   methods: {
     async handleSubmit() {
-      await axios
-        .post("http://localhost:8080/login", {
+      authApi
+        .login({
           username: this.username,
           password: this.password,
         })
         .then((response) => {
-          localStorage.setItem("token", response.data.jwt);
+          localStorage.setItem("jwt", response.data.jwt);
           console.log("Login complete!");
           this.showSuccess = true;
           setTimeout(() => {
