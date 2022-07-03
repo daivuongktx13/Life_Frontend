@@ -11,24 +11,32 @@
 import VideoPlayer from "../components/Room_Page/VideoPlayer.vue";
 import Widget from "../components/Room_Page/Widget.vue";
 import ChatBox from "../components/Room_Page/ChatBox.vue";
+import user from "../store/user";
 import { authApi } from "../api/apiServices";
 export default {
   name: "RoomView",
   components: { VideoPlayer, Widget, ChatBox },
   mounted(){
-    if(localStorage.getItem("jwt") === null){
+    // Validate JWT Token
+    if (localStorage.getItem("jwt") === null) {
       this.$router.push("/login");
     } else {
-      authApi.jwtValidate({
-        jwt: localStorage.getItem("jwt"),
-      }).then((response) => {
-          if(response.data == false) {
+      authApi
+        .jwtValidate({
+          jwt: localStorage.getItem("jwt"),
+        })
+        .then((response) => {
+          if (response.data == null) {
             this.$router.push("/login");
+          } else {
+            user.commit("setUsername", response.data);
           }
-      }).catch((error) => {
-        console.log(error);
-      })
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
+
   }
 };
 </script>

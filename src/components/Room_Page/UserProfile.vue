@@ -25,7 +25,7 @@
             ></i>
           </button>
         </div>
-        <div class="pr-2 text-white">User #</div>
+        <div class="pr-2 text-white">{{myname}}</div>
       </div>
     </div>
   </div>
@@ -34,6 +34,7 @@
 
 <script>
 import $ from "jquery";
+import user from "../../store/user";
 export default {
   name: "UserProfile",
   created() {
@@ -49,6 +50,11 @@ export default {
       });
     });
   },
+  computed:{
+    myname() {
+      return user.getters.getUsername;
+    }
+  }
 };
 </script>
 

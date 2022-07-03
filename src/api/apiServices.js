@@ -16,7 +16,7 @@ export const authApi = {
 }
 
 export const roomApi = {
-    getAllUsersInSpace(space){
-        return axios.get(`${baseApiUrl}/${space}/users`, authHeader);
+    getAllUsersInSpace(space, header){
+        return axios.get(`${baseApiUrl}/${space}/users`, header);
     }
 }

@@ -32,12 +32,13 @@
 <script>
 import SockJS from "sockjs-client";
 import Stomp from "webstomp-client";
-import { roomApi } from "../../api/apiServices";
-import axios from "axios";
+import user from "../../store/user";
+import { roomApi, authApi } from "../../api/apiServices";
 export default {
   name: "Chat",
   data() {
     return {
+      client: null,
       participants: [
         // {
         //   id: "user1",
@@ -102,6 +103,18 @@ export default {
     onMessageWasSent(message) {
       // called when the user sends a message
       this.messageList = [...this.messageList, message];
+      console.log(message.data.text);
+      if (this.client != null) {
+        console.log("send");
+        this.client.send(
+          `/app/message/${this.$route.params.category}`,
+          JSON.stringify({
+            content: message.data.text,
+            sender: this.selfName,
+          }),
+          {}
+        );
+      }
     },
     openChat() {
       // called when the user clicks on the fab button to open the chat
@@ -126,9 +139,26 @@ export default {
     },
   },
   mounted() {
+
+    // Connect websocket endpoint
     const connection = new SockJS("http://localhost:8080/ws");
     const stomp = Stomp.over(connection);
     let jwt = localStorage.getItem("jwt");
+
+    //Get All User
+    roomApi
+      .getAllUsersInSpace(this.$route.params.category, {
+        headers: {
+          Authorization: "Bearer " + jwt,
+        },
+      })
+      .then((response) => {
+        this.participants = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     stomp.connect(
       {
         Authorization: `Bearer ${jwt}`,
@@ -138,6 +168,14 @@ export default {
         stomp.subscribe(
           `/public/${this.$route.params.category}`,
           (message) => {
+            let tempMess = JSON.parse(message.body);
+            // console.log(tempMess);
+            if (tempMess.sender === this.selfName) return;
+            this.messageList.push({
+              type: "text",
+              author: tempMess.sender,
+              data: { text: `${tempMess.content}` },
+            });
           },
           {}
         );
@@ -145,36 +183,38 @@ export default {
         stomp.subscribe(
           `/public/special/${this.$route.params.category}`,
           (specialMessage) => {
-            let json_mess = JSON.parse(specialMessage.body)
-            switch(json_mess['type']){
+            let json_mess = JSON.parse(specialMessage.body);
+            switch (json_mess["type"]) {
               case "JOIN":
                 this.participants.push({
-                  id: json_mess['sender'],
-                  name: json_mess['sender'],
+                  id: json_mess["sender"],
+                  name: json_mess["sender"],
                   imageUrl: null,
-                })
-                break
-              case "LEAVE":
-                this.participants =  this.participants.filter((value, index, arr) => {
-                  return value['id'] != json_mess['sender'];
                 });
-                break
+                break;
+              case "LEAVE":
+                this.participants = this.participants.filter(
+                  (value, index, arr) => {
+                    return value["id"] != json_mess["sender"];
+                  }
+                );
+                break;
             }
           },
           {}
         );
-
-        roomApi
-          .getAllUsersInSpace(this.$route.params.category)
-          .then((response) => {
-            this.participants = response.data;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        this.client = stomp;
       }
     );
   },
+  computed: {
+    selfName(){
+      return user.getters.getUsername;
+    },
+    selfImage(){
+      return user.getters.getImage;
+    }
+  }
 };
 </script>
 
