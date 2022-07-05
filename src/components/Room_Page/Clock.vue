@@ -270,6 +270,7 @@ export default {
           if($('#pomodoro').is(':hidden') == true){
             $("#pomodoro").show('slow');
             $("#volume-controller").hide("fast");
+            $("#profileMenu").hide("fast");
             if ($(window).width() < 428) {
               $("#space-list").hide("fast");
             }
