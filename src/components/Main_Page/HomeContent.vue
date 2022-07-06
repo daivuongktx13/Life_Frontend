@@ -1,14 +1,15 @@
 <template>
   <div id="home">
-    <div>
-      <div class="flex justify-center py-5 md:py-10 text-xs md:text-xl font-bold">
+    <div class="flex-col flex items-center">
+      <div id="maintext" class="flex justify-center py-5 md:py-10 opacity-80 hover:opacity-100" 
+      style="font-family: 'Dancing Script', cursive;font-size: 60px;"
+      >
         Welcome to our main page
       </div>
-      <div class="flex justify-center text-xs md:text-lg font-medium">
-        Explore hundreds of spaces<br />
-      </div>
-      <div class="flex justify-center text-xs md:text-lg mb-5 font-medium">
-        Build your personalized space!<br />
+      <div class="grid grid-cols-1 justify-center text-xs md:text-base" 
+        style="font-family: Poppins-Regular;">
+        <div>Explore hundreds of spaces</div>
+        <div>Build your personalized space!</div>
       </div>
     </div>
 
@@ -26,3 +27,7 @@ export default {
   components: { ProfileSpace },
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+</style>

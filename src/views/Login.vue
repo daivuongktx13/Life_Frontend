@@ -2,11 +2,18 @@
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100">
-        <div class="login100-pic js-tilt" data-tilt>
-          <img src="../assets/login/images/img-01.png" alt="IMG" />
+        <div
+          class="login100-pic js-tilt"
+          data-tilt
+        >
+          <img
+            src="../assets/login/images/img-01.png"
+            alt="IMG"
+          >
         </div>
-
+        
         <div class="login100-form validate-form">
+          <form action="#" @submit="handleSubmit">
           <span class="login100-form-title">Login </span>
 
           <div
@@ -14,15 +21,18 @@
             data-validate="Valid email is required: ex@abc.xyz"
           >
             <input
+              v-model="username"
               class="input100"
               type="email"
-              v-model="username"
               placeholder="Email"
               required
-            />
-            <span class="focus-input100"></span>
+            >
+            <span class="focus-input100" />
             <span class="symbol-input100">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <i
+                class="fa fa-envelope"
+                aria-hidden="true"
+              />
             </span>
           </div>
 
@@ -31,44 +41,63 @@
             data-validate="Password is required"
           >
             <input
+              v-model="password"
               class="input100"
               type="password"
-              v-model="password"
               placeholder="Password"
               required
-            />
-            <span class="focus-input100"></span>
+            >
+            <span class="focus-input100" />
             <span class="symbol-input100">
-              <i class="fa fa-lock" aria-hidden="true"></i>
+              <i
+                class="fa fa-lock"
+                aria-hidden="true"
+              />
             </span>
           </div>
 
           <div class="container-login100-form-btn">
-            <button @click="handleSubmit" class="login100-form-btn">
-              Login
-            </button>
+            <input class="bg-green-600 login100-form-btn hover:bg-green-700" type="submit" value="Login">
           </div>
+
+          </form>
 
           <div class="text-center p-t-12">
             <span class="txt1"> Forgot </span>
-            <a class="txt2" href="#"> Username / Password? </a>
+            <a
+              class="txt2"
+              href="#"
+            > Username / Password? </a>
           </div>
           <transition name="slide-fade">
-            <div v-if="showError" class="text-center">
+            <div
+              v-if="showError"
+              class="text-center"
+            >
               <div class="txt2 text-red-700">Wrong username or password!</div>
             </div>
           </transition>
           <transition name="slide-fade">
-            <div v-if="showSuccess" class="text-center">
+            <div
+              v-if="showSuccess"
+              class="text-center"
+            >
               <div class="txt2 text-green-400">Login complete!</div>
             </div>
           </transition>
           <div class="text-center p-t-90">
-            <a class="txt2" href="/registration">
+            <a
+              class="txt2"
+              href="/registration"
+            >
               Create your Account
-              <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+              <i
+                class="fa fa-long-arrow-right m-l-5"
+                aria-hidden="true"
+              />
             </a>
           </div>
+          
         </div>
       </div>
     </div>
@@ -83,6 +112,7 @@ import { authApi } from "../api/apiServices";
 export default {
   name: "LoginView",
   components: {},
+  props: {},
   data() {
     return {
       username: "",
@@ -100,6 +130,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
+      console.log("Trigger Login!");
       authApi
         .login({
           username: this.username,
@@ -130,15 +161,12 @@ export default {
         });
     },
   },
-  props: {},
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/login/css/util.css";
 @import "../assets/login/css/main.css";
-// @import "../assets/login/vendor/bootstrap/css/bootstrap.min.css";
-// @import "../assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
 @import "../assets/login/vendor/animate/animate.css";
 @import "../assets/login/vendor/css-hamburgers/hamburgers.min.css";
 @import "../assets/login/vendor/select2/select2.min.css";

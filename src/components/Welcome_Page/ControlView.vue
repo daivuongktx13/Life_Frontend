@@ -1,22 +1,36 @@
 <template id="controls">
   <div>
     <ul class="controls">
-      <li class="logout" @click="logout">Logout</li>
+      <li
+        class="logout"
+        @click="logout"
+      >Logout</li>
       <li
         v-for="(animation, index) in getAnimations"
         :key="index"
+        :class="{ active: animation === getMode }"
         @click.prevent="setMode(animation)"
-        v-bind:class="{ active: animation === getMode }"
       >
         {{ animation }}
       </li>
-      <li class="start" @click="pushToMain()">Start</li>
+      <li
+        class="start"
+        @click="pushToMain()"
+      >Start</li>
     </ul>
     <ul class="paginationControl">
-      <li id="previous" v-if="getIndexMode != 0" @click="previousMode">
+      <li
+        v-if="getIndexMode != 0"
+        id="previous"
+        @click="previousMode"
+      >
         &lt;
       </li>
-      <li id="next" v-if="getIndexMode != 5" @click="nextMode">
+      <li
+        v-if="getIndexMode != 5"
+        id="next"
+        @click="nextMode"
+      >
         &gt;
       </li>
     </ul>
@@ -25,25 +39,11 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import axios from "axios";
 export default {
   name: "ControlView",
   props: {},
 
   async created() {
-    // await axios
-    //   .get("http://localhost:8080/", {
-    //     headers: {
-    //       Authorization: "Bearer " + localStorage.getItem("token"),
-    //     },
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     this.$router.push("login");
-    //   });
   },
 
   computed: {

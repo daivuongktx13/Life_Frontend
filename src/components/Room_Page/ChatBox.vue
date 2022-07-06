@@ -3,25 +3,25 @@
     <!-- :icons="icons" -->
     <beautiful-chat
       :participants="participants"
-      :titleImageUrl="titleImageUrl"
-      :onMessageWasSent="onMessageWasSent"
-      :messageList="messageList"
-      :newMessagesCount="newMessagesCount"
-      :isOpen="isChatOpen"
+      :title-image-url="titleImageUrl"
+      :on-message-was-sent="onMessageWasSent"
+      :message-list="messageList"
+      :new-messages-count="newMessagesCount"
+      :is-open="isChatOpen"
       :close="closeChat"
       :open="openChat"
-      :showEmoji="true"
-      :showFile="true"
-      :showEdition="true"
-      :showDeletion="true"
-      :deletionConfirmation="true"
-      :showTypingIndicator="showTypingIndicator"
-      :showLauncher="true"
-      :showCloseButton="true"
+      :show-emoji="true"
+      :show-file="true"
+      :show-edition="true"
+      :show-deletion="true"
+      :deletion-confirmation="true"
+      :show-typing-indicator="showTypingIndicator"
+      :show-launcher="true"
+      :show-close-button="true"
       :colors="colors"
-      :alwaysScrollToBottom="alwaysScrollToBottom"
-      :disableUserListToggle="false"
-      :messageStyling="messageStyling"
+      :always-scroll-to-bottom="alwaysScrollToBottom"
+      :disable-user-list-toggle="false"
+      :message-styling="messageStyling"
       @onType="handleOnType"
       @edit="editMessage"
     />
@@ -87,56 +87,13 @@ export default {
       messageStyling: true, // enables *bold* /emph/ _underline_ and such (more info at github.com/mattezza/msgdown)
     };
   },
-  methods: {
-    sendMessage(text) {
-      if (text.length > 0) {
-        this.newMessagesCount = this.isChatOpen
-          ? this.newMessagesCount
-          : this.newMessagesCount + 1;
-        this.onMessageWasSent({
-          author: "support",
-          type: "text",
-          data: { text },
-        });
-      }
+  computed: {
+    selfName(){
+      return user.getters.getUsername;
     },
-    onMessageWasSent(message) {
-      // called when the user sends a message
-      this.messageList = [...this.messageList, message];
-      console.log(message.data.text);
-      if (this.client != null) {
-        console.log("send");
-        this.client.send(
-          `/app/message/${this.$route.params.category}`,
-          JSON.stringify({
-            content: message.data.text,
-            sender: this.selfName,
-          }),
-          {}
-        );
-      }
-    },
-    openChat() {
-      // called when the user clicks on the fab button to open the chat
-      this.isChatOpen = true;
-      this.newMessagesCount = 0;
-    },
-    closeChat() {
-      // called when the user clicks on the botton to close the chat
-      this.isChatOpen = false;
-    },
-    handleScrollToTop() {
-      // called when the user scrolls message list to top
-      // leverage pagination for loading another page of messages
-    },
-    handleOnType() {
-      console.log("Emit typing event");
-    },
-    editMessage(message) {
-      const m = this.messageList.find((m) => m.id === message.id);
-      m.isEdited = true;
-      m.data.text = message.data.text;
-    },
+    selfImage(){
+      return user.getters.getImage;
+    }
   },
   mounted() {
 
@@ -207,13 +164,56 @@ export default {
       }
     );
   },
-  computed: {
-    selfName(){
-      return user.getters.getUsername;
+  methods: {
+    sendMessage(text) {
+      if (text.length > 0) {
+        this.newMessagesCount = this.isChatOpen
+          ? this.newMessagesCount
+          : this.newMessagesCount + 1;
+        this.onMessageWasSent({
+          author: "support",
+          type: "text",
+          data: { text },
+        });
+      }
     },
-    selfImage(){
-      return user.getters.getImage;
-    }
+    onMessageWasSent(message) {
+      // called when the user sends a message
+      this.messageList = [...this.messageList, message];
+      console.log(message.data.text);
+      if (this.client != null) {
+        console.log("send");
+        this.client.send(
+          `/app/message/${this.$route.params.category}`,
+          JSON.stringify({
+            content: message.data.text,
+            sender: this.selfName,
+          }),
+          {}
+        );
+      }
+    },
+    openChat() {
+      // called when the user clicks on the fab button to open the chat
+      this.isChatOpen = true;
+      this.newMessagesCount = 0;
+    },
+    closeChat() {
+      // called when the user clicks on the botton to close the chat
+      this.isChatOpen = false;
+    },
+    handleScrollToTop() {
+      // called when the user scrolls message list to top
+      // leverage pagination for loading another page of messages
+    },
+    handleOnType() {
+      console.log("Emit typing event");
+    },
+    editMessage(message) {
+      const m = this.messageList.find((m) => m.id === message.id);
+      m.isEdited = true;
+      m.data.text = message.data.text;
+    },
   }
 };
 </script>

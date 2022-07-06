@@ -18,12 +18,12 @@ import About from "../components/Main_Page/About.vue";
 export default {
   name: "MainPage",
   components: { NavBar, HomeContent, Category, About },
-  methods: {},
   mounted(){
     if(localStorage.getItem("jwt") === null){
       this.$router.push("/login");
     }
   },
+  methods: {},
 };
 </script>
 

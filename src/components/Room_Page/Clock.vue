@@ -6,7 +6,7 @@
         class="w-16 h-16 rounded-full"
         style="background-color: rgb(35, 41, 49)"
       >
-        <i class="fa-solid fa-xl fa-stopwatch text-white"></i>
+        <i class="fa-solid fa-xl fa-stopwatch text-white" />
       </button>
     </div>
     <div id="pomodoro">
@@ -17,25 +17,62 @@
             <span id="minutes">30</span>
             <span id="seconds">00</span>
           </div>
-          <div id="controls" clas s="reset">
-            <div class="scale-125 text-green-500" id="start"><i class="fas fa-play"></i> Start</div>
-            <div class="scale-125 text-yellow-500" id="pause"><i class="fas fa-pause"></i> Pause</div>
-            <div class="scale-125 text-emerald-100" id="reset"><i class="fas fa-sync-alt"></i> Reset</div>
+          <div
+            id="controls"
+            clas
+            s="reset"
+          >
+            <div
+              id="start"
+              class="scale-125 text-green-500"
+            ><i class="fas fa-play" /> Start</div>
+            <div
+              id="pause"
+              class="scale-125 text-yellow-500"
+            ><i class="fas fa-pause" /> Pause</div>
+            <div
+              id="reset"
+              class="scale-125 text-emerald-100"
+            ><i class="fas fa-sync-alt" /> Reset</div>
           </div>
         </div>
       </div>
       <div id="options">
         <div id="session">
-          <i id="incrSession" class="fas fa-angle-double-up"></i>
+          <i
+            id="incrSession"
+            class="fas fa-angle-double-up"
+          />
           <span class="option-title">Session</span>
-          <input id="sessionInput" type="number" value="30" max="60" min="5" />
-          <i id="decrSession" class="fas fa-angle-double-down"></i>
+          <input
+            id="sessionInput"
+            type="number"
+            value="30"
+            max="60"
+            min="5"
+          >
+          <i
+            id="decrSession"
+            class="fas fa-angle-double-down"
+          />
         </div>
         <div id="break">
-          <i id="incrBreak" class="fas fa-angle-double-up"></i>
+          <i
+            id="incrBreak"
+            class="fas fa-angle-double-up"
+          />
           <span class="option-title">Break</span>
-          <input id="breakInput" type="number" value="5" max="10" min="1" />
-          <i id="decrBreak" class="fas fa-angle-double-down"></i>
+          <input
+            id="breakInput"
+            type="number"
+            value="5"
+            max="10"
+            min="1"
+          >
+          <i
+            id="decrBreak"
+            class="fas fa-angle-double-down"
+          />
         </div>
       </div>
     </div>
@@ -47,12 +84,27 @@
 import $ from "jquery";
 export default {
   name: "Clock",
-  created() {
-    this.setUpClock();
-  },
   data(){
     return {
     }
+  },
+  created() {
+    this.setUpClock();
+  },
+  mounted() {
+    $("#pomodoro").hide();
+    $("#trigger-clock").click(function(){
+          if($('#pomodoro').is(':hidden') == true){
+            $("#pomodoro").show('slow');
+            $("#volume-controller").hide("fast");
+            $("#profileMenu").hide("fast");
+            if ($(window).width() < 428) {
+              $("#space-list").hide("fast");
+            }
+          } else {
+            $("#pomodoro").hide("fast");
+          }
+        });
   },
   methods: {
     setUpClock() {
@@ -263,21 +315,6 @@ export default {
         }
       });
     },
-  },
-  mounted() {
-    $("#pomodoro").hide();
-    $("#trigger-clock").click(function(){
-          if($('#pomodoro').is(':hidden') == true){
-            $("#pomodoro").show('slow');
-            $("#volume-controller").hide("fast");
-            $("#profileMenu").hide("fast");
-            if ($(window).width() < 428) {
-              $("#space-list").hide("fast");
-            }
-          } else {
-            $("#pomodoro").hide("fast");
-          }
-        });
   },
 };
 </script>

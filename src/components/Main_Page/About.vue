@@ -3,7 +3,10 @@
     <div class="grid grid-cols-2 mx-5 mt-10 pb-4">
       <!-- <div class="flex justify-start font-bold text-sm md:text-xl"> -->
       <div>
-        <a class="font-bold text-md md:text-xl" href="">Life</a>
+        <a
+          class="font-bold text-md md:text-xl"
+          href=""
+        >Life</a>
       </div>
       <div class="flex justify-end mr-5">
         <a
@@ -16,7 +19,7 @@
             class="bg-dark rounded-sm"
             src="../../assets/ico/Github.png"
             alt="Github"
-          />
+          >
         </a>
       </div>
     </div>

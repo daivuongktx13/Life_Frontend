@@ -1,12 +1,15 @@
 <template>
-  <div class="overflow-hidden z-0" style="width: 100vw; height: 100vh">
+  <div
+    class="overflow-hidden z-0"
+    style="width: 100vw; height: 100vh"
+  >
     <div id="loading-gif">
       <div class="flex flex-col items-center">
         <img
           src="https://github.githubassets.com/images/mona-loading-default.gif"
           alt="Loading Gif"
           class="w-1/4 h-1/4"
-        />
+        >
         <div class="text-white text-sm">One moment please ...</div>
       </div>
     </div>
@@ -24,7 +27,10 @@
       loop
       muted
     >
-      <source src="../../assets/bg_vd.mp4" type="video/mp4" />
+      <source
+        src="../../assets/bg_vd.mp4"
+        type="video/mp4"
+      >
     </video>
   </div>
   <!-- <video id="video-player" src="../../assets/bg_vd.mp4" type="video/mp4" autoplay muted loop></video> -->

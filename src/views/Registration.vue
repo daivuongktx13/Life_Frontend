@@ -11,7 +11,10 @@
               <div class="name">Username</div>
               <div class="value">
                 <div class="input-group">
-                  <input class="input--style-5" type="text" />
+                  <input
+                    class="input--style-5"
+                    type="text"
+                  >
                 </div>
               </div>
             </div>
@@ -24,7 +27,7 @@
                     class="input--style-5"
                     type="email"
                     required
-                  />
+                  >
                 </div>
               </div>
             </div>
@@ -38,7 +41,7 @@
                     class="input--style-5"
                     type="password"
                     required
-                  />
+                  >
                 </div>
               </div>
             </div>
@@ -52,13 +55,12 @@
                     class="input--style-5"
                     type="password"
                     required
-                  />
+                  >
                 </div>
               </div>
             </div>
             <div class="flex flex-row space-x-2">
               <button
-                @click="handleSubmit"
                 class="
                   hover:bg-red-800
                   basis-1/2
@@ -70,11 +72,11 @@
                   p-3
                   font-bold
                 "
+                @click="handleSubmit"
               >
                 REGISTER
               </button>
               <button
-                @click="pushToLogin()"
                 class="
                   hover:bg-sky-800
                   basis-1/2
@@ -86,17 +88,24 @@
                   p-3
                   font-bold
                 "
+                @click="pushToLogin()"
               >
                 Back To Login
               </button>
             </div>
             <transition name="slide-fade">
-              <div v-if="showError" class="text-center">
+              <div
+                v-if="showError"
+                class="text-center"
+              >
                 <div class="txt2 text-red-700">Password does not match!</div>
               </div>
             </transition>
             <transition name="slide-fade">
-              <div v-if="showSuccess" class="text-center">
+              <div
+                v-if="showSuccess"
+                class="text-center"
+              >
                 <div class="txt2 text-green-400">Register complete!</div>
               </div>
             </transition>
@@ -111,8 +120,8 @@
 import { authApi } from "../api/apiServices";
 export default {
   name: "Registration",
-  props: {},
   components: {},
+  props: {},
   data() {
     return {
       username: "",
@@ -144,7 +153,7 @@ export default {
           setTimeout(() => {
             this.$router.push("/login");
           }, 1700);
-          // console.log(response);
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);

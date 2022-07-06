@@ -23,7 +23,6 @@
     "postcss": "^8",
     "sockjs-client": "^1.6.0",
     "tailwindcss": "^3",
-    "tw-elements": "^1.0.0-alpha12",
     "vue": "^2.6.14",
     "vue-beautiful-chat": "^2.5.0",
     "vue-router": "^3.5.1",
@@ -46,6 +45,7 @@
     "pug-plain-loader": "^1.1.0",
     "sass-loader": "^12.6.0",
     "vue-cli-plugin-tailwind": "~3.0.0",
+    "vue-cli-plugin-vuetify": "~2.5.1",
     "vue-template-compiler": "^2.6.14"
   },
   "postcss": {

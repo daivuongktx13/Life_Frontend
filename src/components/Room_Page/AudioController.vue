@@ -6,25 +6,38 @@
         class="w-16 h-16 rounded-full"
         style="background-color: rgb(35, 41, 49)"
       >
-        <i v-if="muted" class="fa-solid fa-volume-xmark fa-lg text-white"></i>
-        <i v-if="low" class="fa-solid fa-volume-low fa-lg text-white"></i>
-        <i v-if="high" class="fa-solid fa-volume-high fa-lg text-white"></i>
+        <i
+          v-if="muted"
+          class="fa-solid fa-volume-xmark fa-lg text-white"
+        />
+        <i
+          v-if="low"
+          class="fa-solid fa-volume-low fa-lg text-white"
+        />
+        <i
+          v-if="high"
+          class="fa-solid fa-volume-high fa-lg text-white"
+        />
       </button>
     </div>
-    <div id="volume-controller" class="slidecontainer p-2 rounded-md mr-3 hidden" style="background-color: rgb(35, 41, 49);">
+    <div
+      id="volume-controller"
+      class="slidecontainer p-2 rounded-md mr-3 hidden"
+      style="background-color: rgb(35, 41, 49);"
+    >
       <div class=" flex flex-row-reverse">
         <input
-        v-model="volume"
-        type="range"
-        min="0"
-        max="100"
-        value="0"
-        class="slider"
-        id="myRange"
-      />
-      <div class="mr-3 p-1 text-white rounded-full" >
-        {{ volume }}
-      </div>
+          id="myRange"
+          v-model="volume"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          class="slider"
+        >
+        <div class="mr-3 p-1 text-white rounded-full">
+          {{ volume }}
+        </div>
       </div>
       
     </div>
@@ -42,6 +55,17 @@ export default {
       isVolumeShown: false,
     };
   },
+  computed: {
+    muted() {
+      return this.volume == 0;
+    },
+    low() {
+      return this.volume > 0 && this.volume <= 50;
+    },
+    high() {
+      return this.volume > 50 && this.volume <= 100;
+    },
+  },
   created(){
     $(() => {
       $("#trigger-volume").click(function () {
@@ -57,17 +81,6 @@ export default {
   }
   ,
   methods: {},
-  computed: {
-    muted() {
-      return this.volume == 0;
-    },
-    low() {
-      return this.volume > 0 && this.volume <= 50;
-    },
-    high() {
-      return this.volume > 50 && this.volume <= 100;
-    },
-  },
 };
 </script>
 

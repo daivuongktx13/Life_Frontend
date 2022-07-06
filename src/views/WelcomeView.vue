@@ -17,7 +17,6 @@ import flipX from "../components/Welcome_Page/FlipX.vue"
 import flipY from "../components/Welcome_Page/FlipY.vue"
 
 import { mapGetters } from "vuex";
-import axios from 'axios';
 export default {
   name: "App",
   components: { ControlView, fade, slide, slideUp, zoom, flipX, flipY },
@@ -25,18 +24,6 @@ export default {
     ...mapGetters(["getMode"]),
   },
   created() {
-    // axios.get("http://localhost:8080/",
-    // {
-    //   headers: {
-    //     "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwb3JvMTMwMSIsImV4cCI6MTY1MjQ0NTcwNSwiaWF0IjoxNjUyNDA5NzA1fQ.ZNpLYOBduY62ETKqu8Qv4yiHBenpkzt9ZEFSLWs5_Wc"
-    //   }
-    // })
-    //   .then((response)=>{
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
   }
 };
 

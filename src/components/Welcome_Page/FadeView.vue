@@ -1,8 +1,16 @@
 <template id="page">
-  <transition v-on:enter="enter" v-on:leave="leave" v-bind:css="false" appear>
-    <div class="page" v-bind:class="getMode">
+  <transition
+    :css="false"
+    appear
+    @enter="enter"
+    @leave="leave"
+  >
+    <div
+      class="page"
+      :class="getMode"
+    >
       <div class="center">
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </transition>

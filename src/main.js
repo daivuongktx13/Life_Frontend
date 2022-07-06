@@ -8,7 +8,6 @@ Vue.use(Chat)
 
 import './assets/tailwind.css'
 
-
 new Vue({
   router,
   store: control,

@@ -1,6 +1,6 @@
 <template>
   <div class="relative bg-black">
-    <VideoPlayer/>
+    <VideoPlayer />
     <Widget />
     <ChatBox />
   </div>

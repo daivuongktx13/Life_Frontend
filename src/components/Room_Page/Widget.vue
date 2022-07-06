@@ -4,7 +4,7 @@
       class="py-2 px-4 m-2 rounded-md text-lg text-white cursor-pointer"
       style="background-color: rgb(35, 41, 49);"
       @click="pushToMain()"
-      >
+    >
       Life
     </div>
     <UserProfileVue />
