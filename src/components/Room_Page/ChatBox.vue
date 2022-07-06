@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="chat">
     <!-- :icons="icons" -->
     <beautiful-chat
       :participants="participants"

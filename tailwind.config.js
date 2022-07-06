@@ -3,6 +3,9 @@ module.exports = {
 // , "./node_modules/flowbite/**/*.js" , './node_modules/tw-elements/dist/js/**/*.js'
   theme: {
     extend: {
+      colors: {
+        self: "#36393f",
+      },
       animation: {
         slide: 'slide 20s linear infinite',
       },

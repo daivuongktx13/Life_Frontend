@@ -8,7 +8,7 @@
         />
       </button>
     </div>
-    <div id="profileMenu" class="hidden">
+    <form id="profileMenu" class="hidden">
       <div
         id="profile"
         class="
@@ -58,9 +58,12 @@
               <div class="text-white inline font-sans text-sm sm:text-xl">
                 poro1301
               </div>
+              
             </div>
             <div>
               <div
+                v-if="!editting"
+                @click="editting = true"
                 class="
                   rounded-md
                   text-white
@@ -75,6 +78,24 @@
                 style="background-color: rgb(88, 101, 242)"
               >
                 Edit Profile
+              </div>
+              <div
+                v-if="editting"
+                @click="editting = false"
+                class="
+                  rounded-md
+                  text-white
+                  p-2
+                  hidden
+                  bg-green-500
+                  sm:block
+                  hover:opacity-80
+                  cursor-pointer
+                  font-semibold
+                  mt-5
+                "
+              >
+                Save
               </div>
               <span
                 @click="logout()"
@@ -100,26 +121,24 @@
             class="grid grid-cols-1 sm:m-10 w-5/6 justify-center rounded-md mx-3"
             style="background-color: rgb(54, 57, 63)"
           >
-            <div class="flex justify-between m-3">
-              <div class="text-white">
-                <div class="text-xs">USERNAME</div>
-                <div class="font-semibold">poro1301</div>
-              </div>
-              <!-- <button class="px-3 py-1 rounded-md bg-black text-white">Edit</button> -->
+            <div class="flex justify-between m-3 flex-col">
+                <div class="text-xs text-white">USERNAME</div>
+                <input class="font-semibold disabled:bg-self" 
+                :disabled="!editting"
+                type="text" name="username" id="username" autocomplete="#"
+                 placeholder="poro1301">
             </div>
-            <div class="justify-between hidden sm:flex m-3">
-              <div class="text-white">
-                <div class="text-xs">EMAIL</div>
-                <div class="font-semibold">daivuongktx13@gmail.com</div>
-              </div>
-              <!-- <button class="px-3 py-1 rounded-md bg-black text-white">Edit</button> -->
+            <div class="justify-between hidden flex-col sm:flex m-3">
+                <div class="text-xs text-white">EMAIL</div>
+                <input class="font-semibold disabled:bg-self"
+                  type="text" name="email" id="email" autocomplete="#" :disabled="!editting" 
+                  placeholder="daivuongktx13@gmail.com">
             </div>
-            <div class="flex justify-between m-3">
-              <div class="text-white">
-                <div class="text-xs">PHONE</div>
-                <div class="font-semibold">0854147826</div>
-              </div>
-              <!-- <button class="px-3 py-1 rounded-md bg-black text-white">Edit</button> -->
+            <div class="flex justify-between m-3 flex-col">
+                <div class="text-xs text-white">PHONE</div>
+                <input class="font-semibold disabled:bg-self"
+                  type="text" name="phone" id="phone" :disabled="!editting" autocomplete="#"
+                  placeholder="0854147826">
             </div>
           </div>
           <div class="flex sm:hidden flex-col place-self-center">
@@ -156,7 +175,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -166,6 +185,11 @@ import $ from "jquery";
 import user from "../../store/user";
 export default {
   name: "UserProfile",
+  data() {
+    return {
+      editting: false,
+    }
+  },
   computed: {
     myname() {
       return user.getters.getUsername;

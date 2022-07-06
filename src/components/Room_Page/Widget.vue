@@ -1,8 +1,8 @@
 <template>
   <div class="fixed top-0 left-0">
     <div
-      class="py-2 px-4 m-2 rounded-md text-lg text-white cursor-pointer"
-      style="background-color: rgb(35, 41, 49);"
+      class="py-2 px-4 m-2 rounded-md text-lg text-white hover:text-green-400 cursor-pointer"
+      style="background-color: rgb(35, 41, 49);font-family: 'Dancing Script', cursive;"
       @click="pushToMain()"
     >
       Life
