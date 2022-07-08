@@ -20,3 +20,10 @@ export const roomApi = {
         return axios.get(`${baseApiUrl}/${space}/users`, header);
     }
 }
+
+
+export const profileApi = {
+    getProfile(userId) {
+        return axios.get(`${baseApiUrl}/profile/${userId}`, authHeader);
+    }
+}
