@@ -6,26 +6,17 @@
         class="w-16 h-16 rounded-full"
         style="background-color: rgb(35, 41, 49)"
       >
-        <i
-          v-if="muted"
-          class="fa-solid fa-volume-xmark fa-lg text-white"
-        />
-        <i
-          v-if="low"
-          class="fa-solid fa-volume-low fa-lg text-white"
-        />
-        <i
-          v-if="high"
-          class="fa-solid fa-volume-high fa-lg text-white"
-        />
+        <i v-if="muted" class="fa-solid fa-volume-xmark fa-lg text-white" />
+        <i v-if="low" class="fa-solid fa-volume-low fa-lg text-white" />
+        <i v-if="high" class="fa-solid fa-volume-high fa-lg text-white" />
       </button>
     </div>
     <div
       id="volume-controller"
       class="slidecontainer p-2 rounded-md mr-3 hidden"
-      style="background-color: rgb(35, 41, 49);"
+      style="background-color: rgb(35, 41, 49)"
     >
-      <div class=" flex flex-row-reverse">
+      <div class="flex flex-row-reverse">
         <input
           id="myRange"
           v-model="volume"
@@ -34,19 +25,18 @@
           max="100"
           value="0"
           class="slider"
-        >
+        />
         <div class="mr-3 p-1 text-white rounded-full">
           {{ volume }}
         </div>
       </div>
-      
     </div>
   </div>
 </template>
 
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 export default {
   name: "AudioController",
   data() {
@@ -55,6 +45,7 @@ export default {
       isVolumeShown: false,
     };
   },
+  methods: {},
   computed: {
     muted() {
       return this.volume == 0;
@@ -66,7 +57,7 @@ export default {
       return this.volume > 50 && this.volume <= 100;
     },
   },
-  created(){
+  created() {
     $(() => {
       $("#trigger-volume").click(function () {
         if ($("#volume-controller").is(":hidden") == true) {
@@ -77,10 +68,15 @@ export default {
           $("#volume-controller").hide("fast");
         }
       });
+      $("#myRange").on("change", function () {
+        if(this.value > 0) {
+          $("video").prop('muted', false);
+        }
+        $("#video").prop("volume", this.value/100);
+        
+      });
     });
-  }
-  ,
-  methods: {},
+  },
 };
 </script>
 
