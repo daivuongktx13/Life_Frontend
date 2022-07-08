@@ -1,4 +1,5 @@
 <template>
+
   <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
     <div class="wrapper wrapper--w790">
       <div class="card card-5">
@@ -6,7 +7,7 @@
           <h2 class="title">LIFE Registration Form</h2>
         </div>
         <div class="card-body">
-          <div>
+          <form @submit.prevent="handleSubmit">
             <div class="form-row">
               <div class="name">Username</div>
               <div class="value">
@@ -60,7 +61,8 @@
               </div>
             </div>
             <div class="flex flex-row space-x-2">
-              <button
+              <input
+                type="submit"
                 class="
                   hover:bg-red-800
                   basis-1/2
@@ -68,14 +70,13 @@
                   w-1/2
                   md:w-1/5
                   bg-red-500
+                  p-5 pl-16
                   text-white
-                  p-3
                   font-bold
+                  cursor-pointer
                 "
-                @click="handleSubmit"
+                value="REGISTER"
               >
-                REGISTER
-              </button>
               <button
                 class="
                   hover:bg-sky-800
@@ -109,7 +110,7 @@
                 <div class="txt2 text-green-400">Register complete!</div>
               </div>
             </transition>
-          </div>
+          </form>
         </div>
       </div>
     </div>

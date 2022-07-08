@@ -13,7 +13,7 @@
         </div>
         
         <div class="login100-form validate-form">
-          <form action="#" @submit="handleSubmit">
+          <form @submit.prevent="handleSubmit">
           <span class="login100-form-title">Login </span>
 
           <div
