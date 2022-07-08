@@ -5,21 +5,29 @@ Vue.use(Vuex)
 
 const user = new Vuex.Store({
     state: {
-        username : '',
-        image: '',
+        profile : {
+            username : "poro1301",
+            image: '',
+            id: 0,
+            bio: "A Monster In League of Legend",
+            name: "Trung Cao Tiến",
+        },
     },
 
     getters: {
-        getUsername: (state) => state.username,
-        getImage: (state) => state.image,
+        getUsername: (state) => state.profile.username,
+        getImage: (state) => state.profile.image,
+        getId: (state) => state.profile.id,
+        getBio: (state) => state.profile.bio,
+        getName: (state) => state.profile.name,
     },
 
     mutations: {
-        setUsername(state, username) {
-            state.username = username;
+        setProfile(state, profile){
+            state.profile = profile;
         },
-        setImage(state, image) {
-            state.image = image;
+        setId(state, id){
+            state.profile.id = id;
         }
     }
 })
