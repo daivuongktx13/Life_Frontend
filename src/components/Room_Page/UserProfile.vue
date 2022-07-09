@@ -17,7 +17,7 @@
           overflow-hidden
           rounded-md
           w-1/2
-          h-4/5
+          h-5/6
           flex flex-col
           items-center
         "
@@ -50,15 +50,14 @@
               >
                 <img
                   class="hover:opacity-20 cursor-pointer rounded-full"
-                  style="min-height: 60; min-width: 60px"
+                  style="min-height: 40px; min-width: 40px"
                   src="../../assets/ico/poro1301.jpg"
-                  alt="Poro1031"
+                  :alt="username"
                 />
               </div>
               <div class="text-white inline font-sans text-sm sm:text-xl">
-                poro1301
+                {{ username }}
               </div>
-              
             </div>
             <div>
               <div
@@ -69,7 +68,7 @@
                   text-white
                   p-2
                   hidden
-                  sm:block
+                  md:block
                   hover:opacity-80
                   cursor-pointer
                   font-semibold
@@ -86,9 +85,10 @@
                   rounded-md
                   text-white
                   p-2
+                  px-6
                   hidden
                   bg-green-500
-                  sm:block
+                  md:block
                   hover:opacity-80
                   cursor-pointer
                   font-semibold
@@ -106,7 +106,7 @@
                   font-semibold
                   hover:opacity-90
                   hidden
-                  sm:block
+                  md:block
                   py-2
                   px-6
                   bg-red-700
@@ -117,61 +117,113 @@
               >
             </div>
           </div>
+          <div class="sm:text-base text-xs text-green-500">"{{ bio }}"</div>
+
           <div
-            class="grid grid-cols-1 sm:m-10 w-5/6 justify-center rounded-md mx-3"
+            class="
+              grid grid-cols-1
+              sm:m-10
+              w-5/6
+              justify-center
+              rounded-md
+              mx-3
+            "
             style="background-color: rgb(54, 57, 63)"
           >
-            <div class="flex justify-between m-3 flex-col">
-                <div class="text-xs text-white">USERNAME</div>
-                <input class="font-semibold disabled:bg-self" 
+            <div class="justify-between flex-col flex m-3">
+              <div class="text-xs text-white">NAME</div>
+              <input
+                class="font-semibold bg-slate-500 text-white disabled:bg-self"
+                type="text"
+                name="name"
+                id="name"
+                autocomplete="#"
+                v-model="name"
+                :placeholder="name"
                 :disabled="!editting"
-                type="text" name="username" id="username" autocomplete="#"
-                 placeholder="poro1301">
-            </div>
-            <div class="justify-between hidden flex-col sm:flex m-3">
-                <div class="text-xs text-white">EMAIL</div>
-                <input class="font-semibold disabled:bg-self"
-                  type="text" name="email" id="email" autocomplete="#" :disabled="!editting" 
-                  placeholder="daivuongktx13@gmail.com">
+              />
             </div>
             <div class="flex justify-between m-3 flex-col">
-                <div class="text-xs text-white">PHONE</div>
-                <input class="font-semibold disabled:bg-self"
-                  type="text" name="phone" id="phone" :disabled="!editting" autocomplete="#"
-                  placeholder="0854147826">
+              <div class="text-xs text-white">USERNAME</div>
+              <input
+                class="font-semibold disabled:bg-self"
+                disabled
+                type="text"
+                name="username"
+                id="username"
+                autocomplete="#"
+                :placeholder="username"
+              />
+            </div>
+            <div v-if="editting" class="flex justify-between m-3 flex-col">
+              <div class="text-xs text-white">Profile</div>
+              <input
+                class="bg-slate-500 font-semibold text-white disabled:bg-self"
+                type="text"
+                name="bio"
+                id="bio"
+                autocomplete="#"
+                v-model="bio"
+                :placeholder="bio"
+              />
             </div>
           </div>
-          <div class="flex sm:hidden flex-col place-self-center">
+          <div
+            class="
+              flex
+              md:hidden
+              mt-3
+              flex-row
+              items-center
+              space-x-2
+              ease-in
+              duration-300
+            "
+          >
             <div
+              @click="editting = true"
+              v-if="!editting"
               class="
                 rounded-md
                 text-white
-                p-2
+                p-1
                 hover:opacity-80
                 cursor-pointer
                 font-semibold
-                mt-5
               "
               style="background-color: rgb(88, 101, 242)"
             >
               Edit Profile
             </div>
-            <span
+            <div
+              v-if="editting"
+              @click="editting = false"
+              class="
+                rounded-md
+                text-white
+                p-1
+                bg-green-500
+                hover:opacity-80
+                cursor-pointer
+                font-semibold
+              "
+            >
+              Save
+            </div>
+            <div
               @click="logout()"
               class="
-                relative
-                top-2
-                text-white
-                font-semibold
-                hover:opacity-90
-                py-2
-                px-6
-                bg-red-700
+                bg-red-500
                 cursor-pointer
+                hover:opacity-100
+                opacity-80
+                p-1
                 rounded-md
+                text-white
               "
-              >Logout</span
             >
+              Logout
+            </div>
           </div>
         </div>
       </div>
@@ -183,16 +235,30 @@
 <script>
 import $ from "jquery";
 import user from "../../store/user";
+import { profileApi } from "../../api/apiServices";
+
 export default {
   name: "UserProfile",
   data() {
     return {
       editting: false,
-    }
+    };
   },
   computed: {
-    myname() {
+    name() {
+      return user.getters.getName;
+    },
+    bio() {
+      return user.getters.getBio;
+    },
+    username() {
       return user.getters.getUsername;
+    },
+    image() {
+      return user.getters.getImage;
+    },
+    id() {
+      return user.getters.getId;
     },
   },
   mounted() {
@@ -207,6 +273,15 @@ export default {
         }
       });
     });
+    profileApi
+      .getProfile(1)
+      .then((response) => {
+        user.commit("setProfile", response.data);
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   methods: {
     logout() {

@@ -23,13 +23,13 @@ export default {
     } else {
       authApi
         .jwtValidate({
-          jwt: localStorage.getItem("jwt"),
+          jwt: localStorage.getItem('jwt'),
         })
         .then((response) => {
-          if (response.data == null) {
+          if (response.data == "") {
             this.$router.push("/login");
           } else {
-            user.commit("setUsername", response.data);
+            console.log(response.data)
           }
         })
         .catch((error) => {

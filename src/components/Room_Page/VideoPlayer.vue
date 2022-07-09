@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-hidden z-0" style="width: 100vw; height: 100vh">
-    <div id="loading-gif">
+    <div v-if="!videoLoaded" id="loading-gif">
       <div class="flex flex-col items-center">
         <img
           src="https://github.githubassets.com/images/mona-loading-default.gif"
@@ -10,25 +10,17 @@
         <div class="text-white text-sm">One moment please ...</div>
       </div>
     </div>
-    <video
-      id="video"
-      @click="clickedOnVideo"
-      height="100%"
-      width="auto"
-      style="
-        max-width: 10000%;
-        max-height: 5000%;
-        min-width: 100%;
-        min-height: 100%;
-      "
-      autoplay
-      loop
-      muted
-    >
-      <source src="../../assets/bg_vd.mp4" type="video/mp4" />
-    </video>
+    <!-- <div v-if="videoLoaded" id="video" class="video-container"> -->
+      <!-- <iframe
+        src="https://www.youtube.com/embed/DbuebKNKQsQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&enablejsapi=1"
+        frameBorder="0"
+        allowFullScreen
+      >
+      </iframe> -->
+    <!-- </div>
+     -->
+     <div id="video"></div>
   </div>
-  <!-- <video id="video-player" src="../../assets/bg_vd.mp4" type="video/mp4" autoplay muted loop></video> -->
 </template>
 
 <script>
@@ -37,17 +29,46 @@ export default {
   name: "VideoPlayer",
   data() {
     return {
-      // videoLoaded: false,
+      videoLoaded: true,
     };
   },
   mounted() {
-    var vid = document.getElementById("video");
-    vid.oncanplay = function () {
-      $(() => {
-        $("#video").show();
-        $("#loading-gif").hide();
-      });
-    };
+    // function onYouTubeIframeAPIReady() {
+    //   player = new YT.Player("video", {
+    //     videoId: "DbuebKNKQsQ",
+    //     // controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&enablejsapi=1"
+    //     playerVars: {
+    //       playsinline: 1,
+    //       // origin: "http://localhost:3000",
+    //       autoplay: 1,
+    //       loop: 1,
+    //       controls: 0,
+    //       rel: 0,
+    //       mute: 1,
+    //       enablejsapi: 1,
+    //     },
+    //     events: {
+    //       onStateChange: onPlayerStateChange,
+    //     },
+    //   });
+    // }
+
+    // function onPlayerStateChange(event) {
+    //   if (event.data == YT.PlayerState.PLAYING) {
+    //     videoLoaded = true;
+    //   }
+    // }
+
+
+    // iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo' })
+    // , 'https://www.youtube.com');
+    // var vid = document.getElementById("video");
+    // vid.oncanplay = function () {
+    //   $(() => {
+    //     $("#video").show();
+    //     $("#loading-gif").hide();
+    //   });
+    // };
   },
   methods: {
     clickedOnVideo() {
@@ -81,5 +102,36 @@ export default {
   max-width: 30%;
   height: auto;
   width: auto;
+}
+.video-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-aspect-ratio: 16 / 9) {
+  .video-container iframe,
+  .video-container video {
+    width: 177.78vh !important;
+    height: 120% !important;
+  }
+}
+
+@media (min-aspect-ratio: 16 / 9) {
+  .video-container iframe,
+  .video-container video {
+    width: 222vh !important;
+    height: 130% !important;
+  }
+}
+
+.video-container iframe {
+  position: absolute;
+  top: -10%;
+  left: 0px;
+  width: 100%;
+  height: calc(100% + 120px);
+  pointer-events: none;
 }
 </style>

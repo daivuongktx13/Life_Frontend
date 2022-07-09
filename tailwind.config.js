@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         self: "#36393f",
+        self_2: "#202225",
       },
       animation: {
         slide: 'slide 20s linear infinite',
