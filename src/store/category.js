@@ -17,6 +17,7 @@ const category = new Vuex.Store({
             "snow": "smMBhPHCsiU",
             // "space": "7KXGZAEWzn0",
         },
+        reloadVal: 1,
         player: null,
     },
 
@@ -25,13 +26,17 @@ const category = new Vuex.Store({
         getPlayer: (state) => state.player,
         getSpaceCode: (state) => (space) => {
             return state.spaceVideoId[space];
-        }
+        },
+        getReloadVal: (state) => state.reloadVal,
     },
 
     mutations: {
         setPlayer(state, player){
             state.player = player;
-        }
+        },
+        triggerReload(state){
+            state.reloadVal = !state.reloadVal
+        },
     }
 })
 

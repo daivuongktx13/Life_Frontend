@@ -21,6 +21,7 @@
 
 
 <script>
+import category from '../../store/category';
 export default {
   name: "SpaceIcon",
   props: {
@@ -34,6 +35,7 @@ export default {
   methods: {
     goToRoom() {
       this.$router.push(`/room/${this.name.toLowerCase()}`);
+      category.commit("triggerReload");
     }
   },
 };

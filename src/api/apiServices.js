@@ -16,14 +16,14 @@ export const authApi = {
 }
 
 export const roomApi = {
-    getAllUsersInSpace(space, header){
-        return axios.get(`${baseApiUrl}/${space}/users`, header);
+    getAllUsersInSpace(space, data){
+        return axios.get(`${baseApiUrl}/${space}/users`, data);
     }
 }
 
 
 export const profileApi = {
     getProfile(userId) {
-        return axios.get(`${baseApiUrl}/profile/${userId}`, authHeader);
+        return axios.get(`${baseApiUrl}/profile/${userId}`, {authHeader});
     }
 }

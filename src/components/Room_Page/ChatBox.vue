@@ -33,7 +33,7 @@
 import SockJS from "sockjs-client";
 import Stomp from "webstomp-client";
 import user from "../../store/user";
-import { roomApi, authApi } from "../../api/apiServices";
+import { roomApi } from "../../api/apiServices";
 export default {
   name: "Chat",
   data() {
@@ -101,7 +101,7 @@ export default {
     const connection = new SockJS("http://localhost:8080/ws");
     const stomp = Stomp.over(connection);
     let jwt = localStorage.getItem("jwt");
-
+  
     //Get All User
     roomApi
       .getAllUsersInSpace(this.$route.params.category, {
@@ -122,6 +122,7 @@ export default {
         Space: this.$route.params.category,
       },
       (frame) => {
+        console.log(frame)
         stomp.subscribe(
           `/public/${this.$route.params.category}`,
           (message) => {
@@ -151,7 +152,7 @@ export default {
                 break;
               case "LEAVE":
                 this.participants = this.participants.filter(
-                  (value, index, arr) => {
+                  (value) => {
                     return value["id"] != json_mess["sender"];
                   }
                 );
