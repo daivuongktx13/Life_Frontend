@@ -34,7 +34,6 @@ export default {
   methods: {
     goToRoom() {
       this.$router.push(`/room/${this.name.toLowerCase()}`);
-      this.$router.go();  
     }
   },
 };

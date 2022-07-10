@@ -6,11 +6,11 @@ Vue.use(Vuex)
 const user = new Vuex.Store({
     state: {
         profile : {
-            username : "poro1301",
-            image: '',
             id: 0,
-            bio: "A Monster In League of Legend",
             name: "Trung Cao Tiến",
+            username : "poro1301",
+            bio: "A Monster In League of Legend",
+            image: '',        
         },
     },
 

@@ -147,7 +147,6 @@ export default {
 
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 .active{
   color: rgb(14, 50, 233);
   /* border-bottom: 1px solid blue; */

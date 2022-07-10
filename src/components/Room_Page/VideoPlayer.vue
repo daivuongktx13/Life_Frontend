@@ -10,71 +10,72 @@
         <div class="text-white text-sm">One moment please ...</div>
       </div>
     </div>
-    <!-- <div v-if="videoLoaded" id="video" class="video-container"> -->
+    <div id="video" class="video-container">
       <!-- <iframe
         src="https://www.youtube.com/embed/DbuebKNKQsQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&enablejsapi=1"
         frameBorder="0"
         allowFullScreen
       >
       </iframe> -->
-    <!-- </div>
-     -->
-     <div id="video"></div>
+      <youtube
+        width="auto"
+        height="auto"
+        :video-id="currentSpaceId"
+        ref="youtube"
+        :player-vars="playerVars"
+        @ready="ready"
+      ></youtube>
+    </div>
   </div>
 </template>
 
 <script>
 import $ from "jquery";
+import category from "../../store/category";
 export default {
   name: "VideoPlayer",
   data() {
     return {
-      videoLoaded: true,
+      videoLoaded: false,
     };
   },
-  mounted() {
-    // function onYouTubeIframeAPIReady() {
-    //   player = new YT.Player("video", {
-    //     videoId: "DbuebKNKQsQ",
-    //     // controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&enablejsapi=1"
-    //     playerVars: {
-    //       playsinline: 1,
-    //       // origin: "http://localhost:3000",
-    //       autoplay: 1,
-    //       loop: 1,
-    //       controls: 0,
-    //       rel: 0,
-    //       mute: 1,
-    //       enablejsapi: 1,
-    //     },
-    //     events: {
-    //       onStateChange: onPlayerStateChange,
-    //     },
-    //   });
-    // }
-
-    // function onPlayerStateChange(event) {
-    //   if (event.data == YT.PlayerState.PLAYING) {
-    //     videoLoaded = true;
-    //   }
-    // }
-
-
-    // iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo' })
-    // , 'https://www.youtube.com');
-    // var vid = document.getElementById("video");
-    // vid.oncanplay = function () {
-    //   $(() => {
-    //     $("#video").show();
-    //     $("#loading-gif").hide();
-    //   });
-    // };
+  created() {
+    let space = this.$route.params.category;
+    this.videoId = category.getters.getSpaceCode(space);
+    this.playerVars.playlist = this.videoId;
   },
+  mounted() {},
   methods: {
     clickedOnVideo() {
       $("#pomodoro").hide("fast");
       $("#profileMenu").hide("fast");
       $("#volume-controller").hide("fast");
+    },
+    playVideo() {
+      this.player.playVideo();
+    },
+    ready() {
+      this.playVideo();
+      this.videoLoaded = true;
+      category.commit("setPlayer", this.$refs.youtube.player);
+    },
+  },
+  computed: {
+    player() {
+      return this.$refs.youtube.player;
+    },
+    currentSpaceId() {
+      return category.getters.getSpaceCode(this.$route.params.category);
+    },
+    playerVars() {
+      return {
+        mute: 1,
+        autoplay: 1,
+        loop: 1,
+        controls: 0,
+        origin: "http://localhost:3000",
+        playlist: category.getters.getSpaceCode(this.$route.params.category),
+      };
     },
   },
 };

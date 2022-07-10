@@ -18,6 +18,7 @@
     >
       <div class="flex flex-row-reverse">
         <input
+          @change="setPlayerVolume"
           id="myRange"
           v-model="volume"
           type="range"
@@ -37,15 +38,21 @@
 
 <script>
 import $ from "jquery";
+import category from "../../store/category";
+
 export default {
   name: "AudioController",
   data() {
     return {
       volume: 0,
-      isVolumeShown: false,
     };
   },
-  methods: {},
+  methods: {
+    setPlayerVolume(){
+      this.player.unMute();
+      this.player.setVolume(this.volume);
+    }
+  },
   computed: {
     muted() {
       return this.volume == 0;
@@ -55,6 +62,9 @@ export default {
     },
     high() {
       return this.volume > 50 && this.volume <= 100;
+    },
+    player() {
+      return category.getters.getPlayer;
     },
   },
   created() {
@@ -67,13 +77,6 @@ export default {
         } else {
           $("#volume-controller").hide("fast");
         }
-      });
-      $("#myRange").on("change", function () {
-        if(this.value > 0) {
-          $("video").prop('muted', false);
-        }
-        $("#video").prop("volume", this.value/100);
-        
       });
     });
   },

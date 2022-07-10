@@ -235,7 +235,7 @@
 <script>
 import $ from "jquery";
 import user from "../../store/user";
-import { profileApi } from "../../api/apiServices";
+import { profileApi, authApi } from "../../api/apiServices";
 
 export default {
   name: "UserProfile",
@@ -262,6 +262,12 @@ export default {
     },
   },
   mounted() {
+    // Validate JWT Token
+    if (localStorage.getItem("jwt") === null) {
+      this.$router.push("/login");
+    } else {
+      this.getProfile();
+    }
     $(() => {
       $("#trigger-profile").click(function () {
         if ($("#profileMenu").is(":hidden") == true) {
@@ -273,20 +279,36 @@ export default {
         }
       });
     });
-    profileApi
-      .getProfile(1)
-      .then((response) => {
-        user.commit("setProfile", response.data);
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   },
   methods: {
     logout() {
       localStorage.removeItem("jwt");
       this.$router.push("/login");
+    },
+    async getProfile() {
+      await authApi
+        .jwtValidate({
+          jwt: localStorage.getItem("jwt"),
+        })
+        .then((response) => {
+          if (response.data == "") {
+            this.$router.push("/login");
+          } else {
+            user.commit("setId", response.data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      profileApi
+        .getProfile(this.id)
+        .then((response) => {
+          user.commit("setProfile", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
