@@ -24,7 +24,7 @@ export const roomApi = {
 
 export const profileApi = {
     getProfile(userId) {
-        return axios.get(`${baseApiUrl}/profile/${userId}`, {authHeader});
+        return axios.get(`${baseApiUrl}/profile/${userId}`,{}, {authHeader});
     },
     editProfile(userId, data) {
         return axios.post(`${baseApiUrl}/profile/edit/${userId}`, data, {authHeader})

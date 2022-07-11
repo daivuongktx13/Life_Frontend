@@ -30,6 +30,7 @@
 
 
 <script>
+import { baseImageUrl } from "../../api/base";
 import SockJS from "sockjs-client";
 import Stomp from "webstomp-client";
 import user from "../../store/user";
@@ -50,8 +51,8 @@ export default {
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
       messageList: [
-        { type: "text", author: `me`, data: { text: `Say yes!` } },
-        { type: "text", author: `user1`, data: { text: `No.` } },
+        // { type: "text", author: `me`, data: { text: `Say yes!` } },
+        // { type: "text", author: `user1`, data: { text: `No.` } },
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -91,6 +92,9 @@ export default {
     selfName(){
       return user.getters.getUsername;
     },
+    selfId(){
+      return user.getters.getId;
+    },
     selfImage(){
       return user.getters.getImage;
     }
@@ -110,6 +114,12 @@ export default {
         },
       })
       .then((response) => {
+        console.log(response.data);
+        
+        response.data.map((value) => {
+          value.imageUrl = `${baseImageUrl}/${value.id}/${value.imgUrl}`;
+          return value;
+        })
         this.participants = response.data;
       })
       .catch((error) => {
@@ -127,11 +137,10 @@ export default {
           `/public/${this.$route.params.category}`,
           (message) => {
             let tempMess = JSON.parse(message.body);
-            // console.log(tempMess);
-            if (tempMess.sender === this.selfName) return;
+            if (tempMess.senderId === this.selfId) return;
             this.messageList.push({
               type: "text",
-              author: tempMess.sender,
+              author: tempMess.senderId,
               data: { text: `${tempMess.content}` },
             });
           },
@@ -145,15 +154,15 @@ export default {
             switch (json_mess["type"]) {
               case "JOIN":
                 this.participants.push({
-                  id: json_mess["sender"],
-                  name: json_mess["sender"],
-                  imageUrl: null,
+                  id: json_mess["senderId"],
+                  name: json_mess["senderName"],
+                  imageUrl: `${baseImageUrl}/${json_mess["senderId"]}/${json_mess["image"]}` ,
                 });
                 break;
               case "LEAVE":
                 this.participants = this.participants.filter(
                   (value) => {
-                    return value["id"] != json_mess["sender"];
+                    return value["id"] != json_mess["senderId"];
                   }
                 );
                 break;
@@ -183,12 +192,11 @@ export default {
       this.messageList = [...this.messageList, message];
       console.log(message.data.text);
       if (this.client != null) {
-        console.log("send");
         this.client.send(
           `/app/message/${this.$route.params.category}`,
           JSON.stringify({
             content: message.data.text,
-            sender: this.selfName,
+            senderId: this.selfId,
           }),
           {}
         );
