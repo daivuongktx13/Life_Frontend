@@ -33,10 +33,10 @@
       <div class="flex flex-col">
         <div class="pb-3 text-sm md:text-xl font-bold">Navigation</div>
         <ul class="space-y-3 text-sm md:text-base">
-          <li>Home</li>
-          <li>Category</li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#category">Category</a></li>
           <!-- <li>Explore</li> -->
-          <li>About</li>
+          <li><a href="#about">About</a></li>
         </ul>
       </div>
     </div>
