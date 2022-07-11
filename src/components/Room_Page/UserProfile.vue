@@ -8,7 +8,7 @@
         />
       </button>
     </div>
-    <form id="profileMenu" class="hidden">
+    <form class="hidden" @submit.prevent="editProfile" id="profileMenu">
       <div
         id="profile"
         class="
@@ -48,15 +48,27 @@
                 class="p-2 w-28 h-28 rounded-full"
                 style="background-color: rgb(32, 34, 37)"
               >
+              <!-- src="../../assets/ico/poro1301.jpg" -->
                 <img
-                  class="hover:opacity-20 cursor-pointer rounded-full"
+                  class="rounded-full object-fill"
                   style="min-height: 40px; min-width: 40px"
-                  src="../../assets/ico/poro1301.jpg"
+                  :key="reloadImage"
+                  :src="image"
                   :alt="username"
+                />
+                <input
+                  v-if="editting"
+                  type="file"
+                  class="hover:opacity-20 cursor-pointer rounded-md"
+                  name="image"
+                  @change="imageLoad"
+                  ref="image"
+                  accept="image/jpeg, image/png, image/jpg"
+                  id="image"
                 />
               </div>
               <div class="text-white inline font-sans text-sm sm:text-xl">
-                {{ username }}
+                {{ name }}
               </div>
             </div>
             <div>
@@ -78,9 +90,11 @@
               >
                 Edit Profile
               </div>
-              <div
+              <!-- @click="editting = false" -->
+              <input
+                type="submit"
+                value="Submit"
                 v-if="editting"
-                @click="editting = false"
                 class="
                   rounded-md
                   text-white
@@ -94,9 +108,7 @@
                   font-semibold
                   mt-5
                 "
-              >
-                Save
-              </div>
+              />
               <span
                 @click="logout()"
                 class="
@@ -138,19 +150,19 @@
                 name="name"
                 id="name"
                 autocomplete="#"
-                v-model="name"
+                v-model="user_name"
                 :placeholder="name"
                 :disabled="!editting"
               />
             </div>
+            <!-- name="username"
+                id="username" -->
             <div class="flex justify-between m-3 flex-col">
               <div class="text-xs text-white">USERNAME</div>
               <input
                 class="font-semibold disabled:bg-self"
                 disabled
                 type="text"
-                name="username"
-                id="username"
                 autocomplete="#"
                 :placeholder="username"
               />
@@ -163,7 +175,7 @@
                 name="bio"
                 id="bio"
                 autocomplete="#"
-                v-model="bio"
+                v-model="user_bio"
                 :placeholder="bio"
               />
             </div>
@@ -195,9 +207,10 @@
             >
               Edit Profile
             </div>
-            <div
+            <input
+              type="submit"
+              value="Save"
               v-if="editting"
-              @click="editting = false"
               class="
                 rounded-md
                 text-white
@@ -207,9 +220,7 @@
                 cursor-pointer
                 font-semibold
               "
-            >
-              Save
-            </div>
+            />
             <div
               @click="logout()"
               class="
@@ -242,6 +253,10 @@ export default {
   data() {
     return {
       editting: false,
+      user_img: null,
+      user_name: "",
+      user_bio: "",
+      reloadImage: 1,
     };
   },
   computed: {
@@ -285,6 +300,30 @@ export default {
       localStorage.removeItem("jwt");
       this.$router.push("/login");
     },
+    async editProfile() {
+      var formData = new FormData();
+      formData.append("name",this.user_name);
+      formData.append("bio", this.user_bio);
+      formData.append("imgUrl", `${this.id}.jpg`);
+      formData.append("image", this.user_img);
+      await profileApi
+        .editProfile(this.id, formData)
+        .then((response) => {
+          this.user_bio = response.data.bio;
+          this.user_name = response.data.name;
+          user.commit("setProfile", response.data);
+          this.reloadImage = !this.reloadImage;
+          this.user_img = null;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      this.editting = false;
+    },
+    imageLoad() {
+      this.user_img = this.$refs.image.files[0];
+    },
     async getProfile() {
       await authApi
         .jwtValidate({
@@ -304,6 +343,8 @@ export default {
       profileApi
         .getProfile(this.id)
         .then((response) => {
+          this.user_bio = response.data.bio;
+          this.user_name = response.data.name;
           user.commit("setProfile", response.data);
         })
         .catch((error) => {

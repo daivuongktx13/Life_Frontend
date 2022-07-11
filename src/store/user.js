@@ -1,22 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import {baseImageUrl} from '../api/base'
 Vue.use(Vuex)
 
 const user = new Vuex.Store({
     state: {
         profile : {
             id: 0,
-            name: "Trung Cao Tiến",
-            username : "poro1301",
-            bio: "A Monster In League of Legend",
-            image: '',        
+            name: "",
+            username : "",
+            bio: "",
+            imgUrl: "",        
         },
     },
 
     getters: {
         getUsername: (state) => state.profile.username,
-        getImage: (state) => state.profile.image,
+        getImage: (state) => `${baseImageUrl}/${state.profile.id}/${state.profile.imgUrl}`,
         getId: (state) => state.profile.id,
         getBio: (state) => state.profile.bio,
         getName: (state) => state.profile.name,
