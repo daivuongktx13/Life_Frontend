@@ -323,6 +323,10 @@ export default {
     },
     imageLoad() {
       this.user_img = this.$refs.image.files[0];
+      if(this.user_img){
+        let x = URL.createObjectURL(this.user_img);
+        user.commit("setImage", x.toString())
+      }
     },
     async getProfile() {
       await authApi

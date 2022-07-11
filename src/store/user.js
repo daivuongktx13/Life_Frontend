@@ -17,7 +17,7 @@ const user = new Vuex.Store({
 
     getters: {
         getUsername: (state) => state.profile.username,
-        getImage: (state) => `${baseImageUrl}/${state.profile.id}/${state.profile.imgUrl}`,
+        getImage: (state) => state.profile.imgUrl,
         getId: (state) => state.profile.id,
         getBio: (state) => state.profile.bio,
         getName: (state) => state.profile.name,
@@ -26,6 +26,7 @@ const user = new Vuex.Store({
 
     mutations: {
         setProfile(state, profile){
+            profile.imgUrl = `${baseImageUrl}/${profile.id}/${profile.imgUrl}`;
             state.profile = profile;
         },
         setId(state, id){
@@ -34,6 +35,9 @@ const user = new Vuex.Store({
         setStompClient(state, stomp){
             state.stompClient = stomp;  
         },
+        setImage(state, image){
+            state.profile.imgUrl = image;
+        }
     }
 })
 
