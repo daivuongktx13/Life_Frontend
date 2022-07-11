@@ -34,6 +34,7 @@ import { baseImageUrl } from "../../api/base";
 import SockJS from "sockjs-client";
 import Stomp from "webstomp-client";
 import user from "../../store/user";
+import category from "../../store/category";
 import { roomApi } from "../../api/apiServices";
 export default {
   name: "Chat",
@@ -89,23 +90,22 @@ export default {
     };
   },
   computed: {
-    selfName(){
+    selfName() {
       return user.getters.getUsername;
     },
-    selfId(){
+    selfId() {
       return user.getters.getId;
     },
-    selfImage(){
+    selfImage() {
       return user.getters.getImage;
-    }
+    },
   },
   mounted() {
-
     // Connect websocket endpoint
     const connection = new SockJS("http://localhost:8080/ws");
     const stomp = Stomp.over(connection);
     let jwt = localStorage.getItem("jwt");
-  
+
     //Get All User
     roomApi
       .getAllUsersInSpace(this.$route.params.category, {
@@ -115,11 +115,11 @@ export default {
       })
       .then((response) => {
         console.log(response.data);
-        
+
         response.data.map((value) => {
           value.imageUrl = `${baseImageUrl}/${value.id}/${value.imgUrl}`;
           return value;
-        })
+        });
         this.participants = response.data;
       })
       .catch((error) => {
@@ -132,7 +132,7 @@ export default {
         Space: this.$route.params.category,
       },
       (frame) => {
-        console.log(frame)
+        console.log(frame);
         stomp.subscribe(
           `/public/${this.$route.params.category}`,
           (message) => {
@@ -156,23 +156,22 @@ export default {
                 this.participants.push({
                   id: json_mess["senderId"],
                   name: json_mess["senderName"],
-                  imageUrl: `${baseImageUrl}/${json_mess["senderId"]}/${json_mess["image"]}` ,
+                  imageUrl: `${baseImageUrl}/${json_mess["senderId"]}/${json_mess["image"]}`,
                 });
                 break;
               case "LEAVE":
-                this.participants = this.participants.filter(
-                  (value) => {
-                    return value["id"] != json_mess["senderId"];
-                  }
-                );
+                this.participants = this.participants.filter((value) => {
+                  return value["id"] != json_mess["senderId"];
+                });
                 break;
             }
           },
           {}
         );
-        this.client = stomp;
       }
     );
+    this.client = stomp;
+    user.commit("setStompClient", stomp);
   },
   methods: {
     sendMessage(text) {
@@ -223,7 +222,7 @@ export default {
       m.isEdited = true;
       m.data.text = message.data.text;
     },
-  }
+  },
 };
 </script>
 

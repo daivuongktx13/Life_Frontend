@@ -14,8 +14,7 @@ const category = new Vuex.Store({
             "cafe": "qMHbh6XmgwM",
             "game": "iYMdmxgZZk0",
             "nature": "fW-mixqTTwE",
-            "snow": "smMBhPHCsiU",
-            // "space": "7KXGZAEWzn0",
+            "snow": "YIDS2l3iI2M",
         },
         reloadVal: 1,
         player: null,
@@ -28,12 +27,14 @@ const category = new Vuex.Store({
             return state.spaceVideoId[space];
         },
         getReloadVal: (state) => state.reloadVal,
+        
     },
 
     mutations: {
         setPlayer(state, player){
             state.player = player;
         },
+        
         triggerReload(state){
             state.reloadVal = !state.reloadVal
         },
