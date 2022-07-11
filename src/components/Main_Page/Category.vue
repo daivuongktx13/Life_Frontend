@@ -1,5 +1,5 @@
 <template>
-  <div id="category" class="flex flex-col items-center m-20">
+  <div id="category" class="flex flex-col items-center m-20 space-y-10">
     <div class="flex justify-center pt-5 pb-3 text-normal md:text-xl font-bold"
       style="font-family: Poppins-Regular;">
       Dive yourself into

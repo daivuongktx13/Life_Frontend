@@ -1,8 +1,8 @@
 <template>
   <div id="home">
-    <div class="flex-col flex items-center space-x-1 my-20">
-      <div id="maintext" class="flex justify-center py-5 md:py-10 opacity-80 hover:opacity-100" 
-      style="font-family: 'Dancing Script', cursive;font-size: 80px;"
+    <div class="flex-col flex items-center space-y-16 my-32">
+      <div id="maintext" class="flex justify-center text-2xl opacity-80 hover:opacity-100" 
+      style="font-family: 'Dancing Script', cursive;"
       >
         Welcome to our main page
       </div>
@@ -33,4 +33,14 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 500px) {
+  #maintext{
+    font-size: 40px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #maintext{
+    font-size: 60px;
+  }
+}
 </style>

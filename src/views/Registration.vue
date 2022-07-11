@@ -107,7 +107,7 @@
                 v-if="showSuccess"
                 class="text-center"
               >
-                <div class="txt2 text-green-400">Register complete!</div>
+                <div class="txt2 m-2 text-2xl text-green-400">Register complete!</div>
               </div>
             </transition>
           </form>

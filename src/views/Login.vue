@@ -82,7 +82,7 @@
               v-if="showSuccess"
               class="text-center"
             >
-              <div class="txt2 text-green-400">Login complete!</div>
+              <div class="txt2 text-xl m-2 text-green-400">Login complete!</div>
             </div>
           </transition>
           <div class="text-center p-t-90">
@@ -144,7 +144,7 @@ export default {
             this.showSuccess = false;
           }, 1000);
           setTimeout(() => {
-            this.$router.push("/welcome");
+            this.$router.push("/");
           }, 1700);
         })
         .catch((error) => {

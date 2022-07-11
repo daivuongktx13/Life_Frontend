@@ -17,21 +17,12 @@
 </template>
 
 <script>
-// import search from '../../store/search'
 export default {
     name:"CategoryNode",
     props:{
         name: String, 
     },
     methods:{
-        // setMode(){
-        //     search.commit("setMode", 1);
-        //     const temp = document.getElementById("categorycontent");
-        //     temp.scrollIntoView();
-        //     setTimeout(() => {
-        //         search.commit("setMode", 2);
-        //     },3000);
-        // }
         goToRoom(){
             this.$router.push(`/room/${this.name.toLowerCase()}`);
         }
