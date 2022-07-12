@@ -15,18 +15,7 @@
                   <input
                     class="input--style-5"
                     type="text"
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="name">Email</div>
-              <div class="value">
-                <div class="input-group">
-                  <input
                     v-model="username"
-                    class="input--style-5"
-                    type="email"
                     required
                   >
                 </div>

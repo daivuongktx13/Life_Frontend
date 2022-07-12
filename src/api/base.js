@@ -10,7 +10,9 @@
 // export const baseImageUrl = `${baseUrl}/user-photos`
 
 
-const baseUrl =  `http://life-backend:8080`;
+// const baseUrl =  `http://life-backend:8080`;
+
+const baseUrl =  `http://localhost:8080`;
 
 export const baseApiUrl = `${baseUrl}`;
 

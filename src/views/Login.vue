@@ -23,8 +23,8 @@
             <input
               v-model="username"
               class="input100"
-              type="email"
-              placeholder="Email"
+              type="text"
+              placeholder="Username"
               required
             >
             <span class="focus-input100" />

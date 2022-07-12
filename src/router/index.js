@@ -34,11 +34,6 @@ const routes = [
     component: NotFoundVue
   },
   {
-    path: '/welcome',
-    name: 'welcome',
-    component: () => import("../views/WelcomeView.vue"),
-  },
-  {
     path: '/room/:category',
     name: 'room',
     component: RoomView
