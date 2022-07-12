@@ -110,7 +110,7 @@ export default {
     roomApi
       .getAllUsersInSpace(this.$route.params.category, {
         headers: {
-          Authorization: "Bearer " + jwt,
+          Authorization: "Bearer " + jwt,A
         },
       })
       .then((response) => {

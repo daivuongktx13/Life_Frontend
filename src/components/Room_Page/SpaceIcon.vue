@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     goToRoom() {
-      this.stomp.disconnect();
+      if(this.stomp) this.stomp.disconnect();
       this.$router.push(`/room/${this.name.toLowerCase()}`);
       category.commit("triggerReload");
     },
