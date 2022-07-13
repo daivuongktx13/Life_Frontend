@@ -11,12 +11,6 @@
       </div>
     </div>
     <div id="video" class="video-container">
-      <!-- <iframe
-        src="https://www.youtube.com/embed/DbuebKNKQsQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&enablejsapi=1"
-        frameBorder="0"
-        allowFullScreen
-      >
-      </iframe> -->
       <youtube
         width="auto"
         height="auto"
